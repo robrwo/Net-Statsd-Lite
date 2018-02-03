@@ -1,0 +1,9 @@
+#!perl
+
++{
+    description => "set",
+    autoflush   => 1,
+    prefix      => 'foo.',
+    input       => [ [qw/ add_set addresses 192.168.0.1 /], ],
+    output      => "foo.addresses:192.168.0.1|s\n",
+};
