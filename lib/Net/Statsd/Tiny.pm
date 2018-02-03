@@ -78,7 +78,7 @@ BEGIN {
     my %CODES = (
         add_set   => [ '%s:%s|s',   qr/\A(.+)\z/ ],
         counter   => [ '%s:%d|c',   qr/\A(\-?[0-9]{1,19})\z/ ],
-        gauge     => [ '%s:%s%u|g', qr/\A([\-\+])?([0-9]{1,20})\z/ ],
+        gauge     => [ '%s:%s%u|g', qr/\A([\-\+]|)?([0-9]{1,20})\z/ ],
         histogram => [ '%s:%u|h',   qr/\A([0-9]{1,20})\z/ ],
         meter     => [ '%s:%u|m',   qr/\A([0-9]{1,20})\z/ ],
         timing    => [ '%s:%u|ms',  qr/\A([0-9]{1,20})\z/ ],
