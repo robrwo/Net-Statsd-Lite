@@ -11,7 +11,14 @@ with qw/ Net::Statsd::Tiny::Test Test::Roo::DataDriven /;
 
 package main;
 
-use Test::Most;
+use strict;
+use warnings;
+
+use Devel::StrictMode;
+
+use Test::More;
+use if STRICT, "Test::Warnings";
+
 
 Net::Statsd::Tiny::Test::Class->run_data_tests(
     files => 't/data',
