@@ -51,4 +51,11 @@
         output      => "test.beans:-1|c|\@1.000000\n",
     },
 
+    {
+        description => "update (alias for counter)",
+        autoflush   => 1,
+        input       => [ [qw/ update beans 14 /], ],
+        output      => "test.beans:14|c\n",
+    },
+
 ]
