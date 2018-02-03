@@ -76,27 +76,30 @@ BEGIN {
     my $class = __PACKAGE__;
 
     my %CODES = (
-        add_set   => '%s:%s|s',
-        counter   => '%s:%d|c',
-        gauge     => '%s:%u|g',
-        histogram => '%s:%u|h',
-        meter     => '%s:%u|m',
-        timing    => '%s:%u|ms',
+        add_set   => [ '%s:%s|s',   qr/\A(.+)\z/ ],
+        counter   => [ '%s:%d|c',   qr/\A(\-?[0-9]{1,19})\z/ ],
+        gauge     => [ '%s:%s%u|g', qr/\A([\-\+])?([0-9]{1,20})\z/ ],
+        histogram => [ '%s:%u|h',   qr/\A([0-9]{1,20})\z/ ],
+        meter     => [ '%s:%u|m',   qr/\A([0-9]{1,20})\z/ ],
+        timing    => [ '%s:%u|ms',  qr/\A([0-9]{1,20})\z/ ],
     );
 
     foreach my $name ( keys %CODES ) {
 
         no strict 'refs';
 
-        my $plain = $CODES{$name};
+        my $plain = $CODES{$name}[0];
         my $rated = $plain . '|@%f';
+        my $parse = $CODES{$name}[1];
 
         *{"${class}::${name}"} = set_subname $name => sub {
             my ( $self, $metric, $value, $rate ) = @_;
+            my @values = $value =~ $parse
+              or croak "Invalid value for ${name}: ${value}";
             $self->record(
                 defined $rate
-                ? ( $rated, $metric, $value, $rate )
-                : ( $plain, $metric, $value )
+                ? ( $rated, $metric, @values, $rate )
+                : ( $plain, $metric, @values )
             );
         };
 
