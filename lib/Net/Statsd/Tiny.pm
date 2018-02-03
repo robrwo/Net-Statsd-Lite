@@ -105,6 +105,16 @@ BEGIN {
 
     }
 
+    # Alises for other Net::Statsd::Client or Etsy::StatsD
+
+    {
+        no strict 'refs';
+
+        *{"${class}::update"}    = set_subname "update"    => \&counter;
+        *{"${class}::timing_ms"} = set_subname "timing_ms" => \&timing;
+
+    }
+
 }
 
 sub increment {
