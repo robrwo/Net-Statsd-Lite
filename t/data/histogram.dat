@@ -1,0 +1,14 @@
+#!perl
+
+use strict;
+use warnings;
+
+[
+    {
+        description => "histogram",
+        autoflush   => 1,
+        prefix      => 'bar.',
+        input       => [ [qw/ histogram size 12000 /], ],
+        output      => "bar.size:12000|h\n",
+    },
+];
