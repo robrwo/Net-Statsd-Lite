@@ -1,5 +1,7 @@
 #!perl
 
+use utf8;
+
 [
     {
         description => "counter",
@@ -56,6 +58,13 @@
         autoflush   => 1,
         input       => [ [qw/ update beans 14 /], ],
         output      => "test.beans:14|c\n",
+    },
+
+     {
+        description => "counter (utf8)",
+        autoflush   => 1,
+        input       => [ [qw/ counter beäns 16 /], ],
+        output      => "test.beäns:16|c\n",
     },
 
 ]
