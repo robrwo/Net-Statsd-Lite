@@ -96,6 +96,9 @@ BEGIN {
             my ( $self, $metric, $value, $rate ) = @_;
             my @values = $value =~ $parse
               or croak "Invalid value for ${name}: ${value}";
+            if ( ( defined $rate ) && ( $rate < 0 || $rate > 1 ) ) {
+                croak "Invalid rate for ${name}: ${rate}";
+            }
             $self->record(
                 defined $rate
                 ? ( $rated, $metric, @values, $rate )
