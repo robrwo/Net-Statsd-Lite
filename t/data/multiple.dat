@@ -1,0 +1,21 @@
+#!perl
+
+use strict;
+use warnings;
+
+[
+    {
+        description => "multiple metrics in one packet",
+        autoflush   => 0,
+        prefix      => 'test.',
+        input       => [
+            [qw/ increment received /],      #
+            [qw/ timing processed 115 /],    #
+            [qw/ histogram size 37184 /],    #
+            [qw/ flush /],                   #
+        ],
+        output => "test.received:1|c\n" .    #
+          "test.processed:115|ms\n" .        #
+          "test.size:37184|h\n",             #
+    },
+];
