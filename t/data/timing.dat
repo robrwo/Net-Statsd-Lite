@@ -1,0 +1,21 @@
+#!perl
+
+use strict;
+use warnings;
+
+[
+    {
+        description => "timing",
+        autoflush   => 1,
+        prefix      => 'foo.',
+        input       => [ [qw/ timing load 123 /], ],
+        output      => "foo.load:123|ms\n",
+    },
+    {
+        description => "timing_ms (alias for timing)",
+        autoflush   => 1,
+        prefix      => 'foo.',
+        input       => [ [qw/ timing_ms load 123 /], ],
+        output      => "foo.load:123|ms\n",
+    },
+];
