@@ -4,7 +4,6 @@ use v5.10;
 
 use Moo 1.000000;
 
-use Carp;
 use IO::Socket 1.18 ();
 use IO::String;
 use MooX::TypeTiny;
@@ -67,7 +66,7 @@ has socket => (
             PeerAddr => $self->host,
             PeerPort => $self->port,
             Proto    => $self->proto,
-        ) or croak "Failed to initialize socket: $!";
+        ) or die "Failed to initialize socket: $!";
         return $sock;
     },
     handles => [qw/ send /],
@@ -155,7 +154,7 @@ sub record {
     my $len = length($data);
 
     if ( $len >= $self->max_buffer_size ) {
-        carp "Data is too large";
+        warn "Data is too large";
         return $self;
     }
 
