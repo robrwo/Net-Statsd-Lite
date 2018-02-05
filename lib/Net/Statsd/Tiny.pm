@@ -57,7 +57,7 @@ has max_buffer_size => (
     default => 512,
 );
 
-has socket => (
+has _socket => (
     is      => 'lazy',
     isa     => InstanceOf ['IO::Socket::INET'],
     builder => sub {
@@ -69,7 +69,7 @@ has socket => (
         ) or die "Failed to initialize socket: $!";
         return $sock;
     },
-    handles => [qw/ send /],
+    handles => { _send => 'send' },
 );
 
 BEGIN {
@@ -176,7 +176,7 @@ sub flush {
     my $data = ${ $fh->string_ref };
 
     if ( length($data) ) {
-        $self->send( $data, 0 );
+        $self->_send( $data, 0 );
         $fh->truncate;
     }
 }
