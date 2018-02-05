@@ -271,7 +271,7 @@ BEGIN {
 
     foreach my $name ( keys %PROTOCOL ) {
 
-        no strict 'refs';
+        no strict 'refs'; ## no critic (ProhibitNoStrict)
 
         my $type = $PROTOCOL{$name}[1];
         my $rate = $PROTOCOL{$name}[2];
@@ -311,7 +311,7 @@ BEGIN {
     # Alises for other Net::Statsd::Client or Etsy::StatsD
 
     {
-        no strict 'refs';
+        no strict 'refs'; ## no critic (ProhibitNoStrict)
 
         *{"${class}::update"}    = set_subname "update"    => \&counter;
         *{"${class}::timing_ms"} = set_subname "timing_ms" => \&timing;
