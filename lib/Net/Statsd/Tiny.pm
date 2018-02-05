@@ -106,13 +106,13 @@ BEGIN {
         if ( defined $rate ) {
 
             $code .= q/ if ((defined $rate) && ($rate<1)) {
-                     $self->record( $tmpl . '|@%f', $metric, $value, $rate );
+                     $self->_record( $tmpl . '|@%f', $metric, $value, $rate );
                    } else {
-                     $self->record( $tmpl, $metric, $value ); } /;
+                     $self->_record( $tmpl, $metric, $value ); } /;
         }
         else {
 
-            $code .= q{$self->record( $tmpl, $metric, $value );};
+            $code .= q{$self->_record( $tmpl, $metric, $value );};
 
         }
 
@@ -145,7 +145,7 @@ sub decrement {
     $self->counter( $metric, -1, $rate );
 }
 
-sub record {
+sub _record {
     my ( $self, $template, @args ) = @_;
 
     my $data = $self->prefix . sprintf( $template, @args );
