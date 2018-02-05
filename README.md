@@ -4,7 +4,7 @@ Net::Statsd::Tiny - A tiny StatsD client
 
 # VERSION
 
-version v0.1.2
+version v0.2.0
 
 # SYNOPSIS
 
