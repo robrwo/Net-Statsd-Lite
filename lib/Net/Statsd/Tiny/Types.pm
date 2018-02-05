@@ -1,4 +1,3 @@
-## Please see file perltidy.ERR
 package Net::Statsd::Tiny::Types;
 
 use Type::Library -base;
@@ -19,7 +18,7 @@ declare "Rate", as StrictNum,
   inline_as { my $n = $_[1]; "$n >= 0 && $n <= 1" };
 
 declare "Gauge", as Str,
-    where { $_ =~ /\A[\-\+]?\d+\z/ },
-    inline_as { my $n = $_[1]; "$n =~ /\\A[\\-\\+]?\\d+\\z/" };
+  where { $_ =~ /\A[\-\+]?\d+\z/ },
+  inline_as { my $n = $_[1]; "$n =~ /\\A[\\-\\+]?\\d+\\z/" };
 
 1;
