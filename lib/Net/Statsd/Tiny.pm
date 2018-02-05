@@ -54,7 +54,7 @@ has _buffer => (
 has max_buffer_size => (
     is      => 'ro',
     isa     => PosInt,
-    default => 8192,
+    default => 512,
 );
 
 has socket => (
