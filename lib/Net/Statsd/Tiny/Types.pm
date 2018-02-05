@@ -1,9 +1,22 @@
 package Net::Statsd::Tiny::Types;
 
+# ABSTRACT: A type library for Net::Statsd::Tiny
+
 use Type::Library -base;
 use Type::Utils -all;
 
 BEGIN { extends "Types::Standard" }
+
+our $VERSION = 'v0.1.0';
+
+=head1 DESCRIPTION
+
+This module provides types for L<Net::Statsd::Tiny>.
+
+The types declared here are intended for internal use, and subject to
+change.
+
+=cut
 
 declare "PosInt", as Int,
   where { $_ >= 0 },
@@ -24,5 +37,12 @@ declare "Rate", as StrictNum,
 declare "Gauge", as Str,
   where { $_ =~ /\A[\-\+]?\d+\z/ },
   inline_as { my $n = $_[1]; "$n =~ /\\A[\\-\\+]?\\d+\\z/" };
+
+=head1 append:AUTHOR
+
+The initial development of this module was sponsored by Science Photo
+Library L<https://www.sciencephoto.com>.
+
+=cut
 
 1;
