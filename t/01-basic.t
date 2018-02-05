@@ -19,9 +19,6 @@ use Devel::StrictMode;
 use Test::More;
 use if STRICT, "Test::Warnings";
 
-
-Net::Statsd::Tiny::Test::Class->run_data_tests(
-    files => 't/data',
-);
+Net::Statsd::Tiny::Test::Class->run_data_tests( files => 't/data', );
 
 done_testing;
