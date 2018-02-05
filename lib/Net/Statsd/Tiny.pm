@@ -79,9 +79,9 @@ BEGIN {
         add_set   => [ 's',  Str, ],
         counter   => [ 'c',  Int, 1 ],
         gauge     => [ 'g',  Gauge | PosInt ],
-        histogram => [ 'h',  PosInt ],
+        histogram => [ 'h',  PosNum ],
         meter     => [ 'm',  PosInt ],
-        timing    => [ 'ms', PosInt ],
+        timing    => [ 'ms', PosNum ],
     );
 
     foreach my $name ( keys %PROTOCOL ) {

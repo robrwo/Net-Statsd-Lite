@@ -9,6 +9,10 @@ declare "PosInt", as Int,
   where { $_ >= 0 },
   inline_as { my $n = $_[1]; "$n >= 0" };
 
+declare "PosNum", as StrictNum,
+  where { $_ >= 0 },
+  inline_as { my $n = $_[1]; "$n >= 0" };
+
 declare "Port", as PosInt,
   where { $_ >= 0 && $_ <= 65535 },
   inline_as { my $port = $_[1]; "$port >= 0 && $port <= 65535" };

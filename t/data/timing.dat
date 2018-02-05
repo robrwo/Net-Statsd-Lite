@@ -12,6 +12,13 @@ use warnings;
         output      => "foo.load:123|ms\n",
     },
     {
+        description => "timing with non-integer",
+        autoflush   => 1,
+        prefix      => 'foo.',
+        input       => [ [qw/ timing load 10.316 /], ],
+        output      => "foo.load:10.316|ms\n",
+    },
+    {
         description => "timing_ms (alias for timing)",
         autoflush   => 1,
         prefix      => 'foo.',
