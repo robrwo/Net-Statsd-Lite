@@ -184,7 +184,7 @@ be added. C<$rate> must be between 0 and 1.
 =method C<update>
 
 This is an alias for L</counter>, for compatability with
-L<Esty::StatsD> or L<Net::Statsd::Client>.
+L<Etsy::StatsD> or L<Net::Statsd::Client>.
 
 =method C<increment>
 
