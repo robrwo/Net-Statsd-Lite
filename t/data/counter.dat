@@ -53,7 +53,7 @@ use warnings;
         description => "decrement with rate",
         autoflush   => 1,
         input       => [ [qw/ decrement beans 1 /], ],
-        output      => "test.beans:-1|c|\@1.000000\n",
+        output      => "test.beans:-1|c\n",
     },
 
     {

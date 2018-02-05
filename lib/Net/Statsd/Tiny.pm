@@ -8,8 +8,9 @@ use Carp;
 use IO::Socket 1.18 ();
 use IO::String;
 use MooX::TypeTiny;
+use Sub::Quote qw/ quote_sub /;
 use Sub::Util 1.40 qw/ set_subname /;
-use Types::Standard -types;
+use Net::Statsd::Tiny::Types -types;
 
 use namespace::autoclean;
 
@@ -21,7 +22,7 @@ has host => (
 
 has port => (
     is      => 'ro',
-    isa     => Int,
+    isa     => Port,
     default => 8125,
 );
 
@@ -53,7 +54,7 @@ has buffer => (
 
 has max_buffer_size => (
     is      => 'ro',
-    isa     => Int,
+    isa     => PosInt,
     default => 8192,
 );
 
@@ -75,36 +76,51 @@ has socket => (
 BEGIN {
     my $class = __PACKAGE__;
 
-    my %CODES = (
-        add_set   => [ '%s:%s|s',   qr/\A(.+)\z/ ],
-        counter   => [ '%s:%d|c',   qr/\A(\-?[0-9]{1,19})\z/ ],
-        gauge     => [ '%s:%s%u|g', qr/\A([\-\+]|)?([0-9]{1,20})\z/ ],
-        histogram => [ '%s:%u|h',   qr/\A([0-9]{1,20})\z/ ],
-        meter     => [ '%s:%u|m',   qr/\A([0-9]{1,20})\z/ ],
-        timing    => [ '%s:%u|ms',  qr/\A([0-9]{1,20})\z/ ],
+    my %PROTOCOL = (
+        add_set   => [ 's',  Str, ],
+        counter   => [ 'c',  Int, 1 ],
+        gauge     => [ 'g',  Gauge | PosInt ],
+        histogram => [ 'h',  PosInt ],
+        meter     => [ 'm',  PosInt ],
+        timing    => [ 'ms', PosInt ],
     );
 
-    foreach my $name ( keys %CODES ) {
+    foreach my $name ( keys %PROTOCOL ) {
 
         no strict 'refs';
 
-        my $plain = $CODES{$name}[0];
-        my $rated = $plain . '|@%f';
-        my $parse = $CODES{$name}[1];
+        my $type = $PROTOCOL{$name}[1];
+        my $rate = $PROTOCOL{$name}[2];
 
-        *{"${class}::${name}"} = set_subname $name => sub {
-            my ( $self, $metric, $value, $rate ) = @_;
-            my @values = $value =~ $parse
-              or croak "Invalid value for ${name}: ${value}";
-            if ( ( defined $rate ) && ( $rate < 0 || $rate > 1 ) ) {
-                croak "Invalid rate for ${name}: ${rate}";
-            }
-            $self->record(
-                defined $rate
-                ? ( $rated, $metric, @values, $rate )
-                : ( $plain, $metric, @values )
-            );
-        };
+        my $code =
+          defined $rate
+          ? q{ my ($self, $metric, $value, $rate) = @_; }
+          : q{ my ($self, $metric, $value) = @_; };
+
+        $code .= $type->inline_assert('$value');
+
+        $code .= q/ if (defined $rate) { / . Rate->inline_assert('$rate') . ' }'
+          if defined $rate;
+
+        my $tmpl = '%s:%s|' . $PROTOCOL{$name}[0];
+
+        if ( defined $rate ) {
+
+            $code .= q/ if ((defined $rate) && ($rate<1)) {
+                     $self->record( $tmpl . '|@%f', $metric, $value, $rate );
+                   } else {
+                     $self->record( $tmpl, $metric, $value ); } /;
+        }
+        else {
+
+            $code .= q{$self->record( $tmpl, $metric, $value );};
+
+        }
+
+        quote_sub "${class}::${name}", $code,
+          { '$tmpl' => \$tmpl },
+          { no_defer => 1 };
+
 
     }
 
