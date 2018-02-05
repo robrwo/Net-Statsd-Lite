@@ -4,7 +4,7 @@ Net::Statsd::Tiny - A tiny StatsD client
 
 # VERSION
 
-version v0.1.0
+version v0.1.1
 
 # SYNOPSIS
 
@@ -21,7 +21,7 @@ my $stats = Net::Statsd::Tiny->new(
 
 $stats->increment('this.counter');
 
-$stats->add_set( $username ) if $username;
+$stats->set_add( $username ) if $username;
 
 $stats->timing( $run_time * 1000 );
 
@@ -179,10 +179,10 @@ This logs a value so that statistics about the metric can be
 gathered. The `$value` must be a positive number, although the
 specification recommends that integers be used.
 
-## `add_set`
+## `set_add`
 
 ```
-$stats->add_set( $metric, $string );
+$stats->set_add( $metric, $string );
 ```
 
 This adds the the `$string` to a set, for logging the number of

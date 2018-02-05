@@ -33,7 +33,7 @@ our $VERSION = 'v0.1.1';
 
     $stats->increment('this.counter');
 
-    $stats->add_set( $username ) if $username;
+    $stats->set_add( $username ) if $username;
 
     $stats->timing( $run_time * 1000 );
 
@@ -248,9 +248,9 @@ This logs a value so that statistics about the metric can be
 gathered. The C<$value> must be a positive number, although the
 specification recommends that integers be used.
 
-=method C<add_set>
+=method C<set_add>
 
-  $stats->add_set( $metric, $string );
+  $stats->set_add( $metric, $string );
 
 This adds the the C<$string> to a set, for logging the number of
 unique things, e.g. IP addresses or usernames.
@@ -261,7 +261,7 @@ BEGIN {
     my $class = __PACKAGE__;
 
     my %PROTOCOL = (
-        add_set   => [ 's',  Str, ],
+        set_add   => [ 's',  Str, ],
         counter   => [ 'c',  Int, 1 ],
         gauge     => [ 'g',  Gauge | PosInt ],
         histogram => [ 'h',  PosNum ],
@@ -315,6 +315,7 @@ BEGIN {
 
         *{"${class}::update"}    = set_subname "update"    => \&counter;
         *{"${class}::timing_ms"} = set_subname "timing_ms" => \&timing;
+        *{"${class}::add_set"}   = set_subname "timing_ms" => \&set_add;
 
     }
 
