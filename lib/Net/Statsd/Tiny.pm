@@ -225,7 +225,7 @@ by that amount.
 
 =method C<timing>
 
-  $stats->timing( $metric, $value );
+  $stats->timing( $metric, $value, $rate );
 
 This logs a "timing" in milliseconds, so that statistics about the
 metric can be gathered. The C<$value> must be positive number,
@@ -234,6 +234,10 @@ although the specification recommends that integers be used.
 In actually, any values can be logged, and this is often used as a
 generic histogram for non-timing values (especially since many StatsD
 daemons do not support the L</histogram> metric type).
+
+If a C<$rate> is specified and less than 1, then a sampling rate will
+be added. C<$rate> must be between 0 and 1.  Note that sampling
+rates for timings may not be supported by all statsd servers.
 
 =method C<timing_ms>
 
@@ -271,7 +275,7 @@ BEGIN {
         gauge     => [ 'g',  Gauge | PosInt ],
         histogram => [ 'h',  PosNum ],
         meter     => [ 'm',  PosInt ],
-        timing    => [ 'ms', PosNum ],
+        timing    => [ 'ms', PosNum, 1 ],
     );
 
     foreach my $name ( keys %PROTOCOL ) {

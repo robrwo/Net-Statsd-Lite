@@ -4,7 +4,7 @@ Net::Statsd::Tiny - A tiny StatsD client
 
 # VERSION
 
-version v0.1.1
+version v0.1.2
 
 # SYNOPSIS
 
@@ -153,7 +153,7 @@ by that amount.
 ## `timing`
 
 ```
-$stats->timing( $metric, $value );
+$stats->timing( $metric, $value, $rate );
 ```
 
 This logs a "timing" in milliseconds, so that statistics about the
@@ -163,6 +163,10 @@ although the specification recommends that integers be used.
 In actually, any values can be logged, and this is often used as a
 generic histogram for non-timing values (especially since many StatsD
 daemons do not support the ["histogram"](#histogram) metric type).
+
+If a `$rate` is specified and less than 1, then a sampling rate will
+be added. `$rate` must be between 0 and 1.  Note that sampling
+rates for timings may not be supported by all statsd servers.
 
 ## `timing_ms`
 
