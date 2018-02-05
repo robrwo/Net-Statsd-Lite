@@ -188,6 +188,11 @@ $stats->set_add( $metric, $string );
 This adds the the `$string` to a set, for logging the number of
 unique things, e.g. IP addresses or usernames.
 
+## `add_set`
+
+This is an alias for ["set\_add"](#set_add). It is deprecated and will be removed
+in a later version.
+
 ## `flush`
 
 This sends the buffer to the ["host"](#host) and empties the buffer, if there
