@@ -11,21 +11,21 @@ version v0.1.0
 ```perl
 use Net::Statsd::Tiny;
 
-  my $stats = Net::Statsd::Tiny->new(
-    prefix          => 'myapp.',
-    autoflush       => 0,
-    max_buffer_size => 8192,
-  );
+my $stats = Net::Statsd::Tiny->new(
+  prefix          => 'myapp.',
+  autoflush       => 0,
+  max_buffer_size => 8192,
+);
 
-  ...
+...
 
-  $stats->increment('this.counter');
+$stats->increment('this.counter');
 
-  $stats->add_set( $username ) if $username;
+$stats->add_set( $username ) if $username;
 
-  $stats->timing( $run_time * 1000 );
+$stats->timing( $run_time * 1000 );
 
-  $stats->flush;
+$stats->flush;
 ```
 
 # DESCRIPTION
@@ -99,7 +99,7 @@ be added. `$rate` must be between 0 and 1.
 ## `update`
 
 This is an alias for ["counter"](#counter), for compatability with
-[Esty::StatsD](https://metacpan.org/pod/Esty::StatsD) or [Net::Statsd::Client](https://metacpan.org/pod/Net::Statsd::Client).
+[Etsy::StatsD](https://metacpan.org/pod/Etsy::StatsD) or [Net::Statsd::Client](https://metacpan.org/pod/Net::Statsd::Client).
 
 ## `increment`
 
@@ -178,6 +178,15 @@ $stats->histogram( $metric, $value );
 This logs a value so that statistics about the metric can be
 gathered. The `$value` must be a positive number, although the
 specification recommends that integers be used.
+
+## `add_set`
+
+```
+$stats->add_set( $metric, $string );
+```
+
+This adds the the `$string` to a set, for logging the number of
+unique things, e.g. IP addresses or usernames.
 
 ## `flush`
 
