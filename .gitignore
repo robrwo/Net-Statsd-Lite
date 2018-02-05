@@ -1,0 +1,4 @@
+Net-Statsd-Tiny-*/
+Net-Statsd-Tiny-*.tar.gz
+.build/
+cpanfile.snapshot
