@@ -1,4 +1,6 @@
 Revision history for Net-Statsd-Tiny
 
 {{$NEXT}}
+
+v0.1.0    2018-02-05 13:30:21+00:00 Europe/London
   - Initial version released.
