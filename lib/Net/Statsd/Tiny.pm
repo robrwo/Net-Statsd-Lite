@@ -43,7 +43,7 @@ has autoflush => (
     default => 1,
 );
 
-has buffer => (
+has _buffer => (
     is      => 'lazy',
     isa     => InstanceOf ['IO::String'],
     builder => sub {
@@ -150,7 +150,7 @@ sub record {
 
     my $data = $self->prefix . sprintf( $template, @args );
 
-    my $fh  = $self->buffer;
+    my $fh  = $self->_buffer;
     my $len = length($data);
 
     if ( $len >= $self->max_buffer_size ) {
@@ -171,7 +171,7 @@ sub record {
 sub flush {
     my ($self) = @_;
 
-    my $fh = $self->buffer;
+    my $fh = $self->_buffer;
 
     my $data = ${ $fh->string_ref };
 
