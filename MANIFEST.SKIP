@@ -8,8 +8,8 @@
 ^blib/
 ^pm_to_blib$
 
-Net-Statsd-Tiny-.*\.tar\.gz
-Net-Statsd-Tiny-v\d+\.\d+\.\d+/
+Net-Statsd-Lite-.*\.tar\.gz
+Net-Statsd-Lite-v\d+\.\d+\.\d+/
 
 ^MYMETA\.*
 
