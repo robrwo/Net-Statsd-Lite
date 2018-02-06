@@ -1,11 +1,11 @@
 #!perl
 
-package Net::Statsd::Tiny::Test::Class;
+package Net::Statsd::Lite::Test::Class;
 
 use Test::Roo;
 
 use lib 't/lib';
-with qw/ Net::Statsd::Tiny::Test Test::Roo::DataDriven /;
+with qw/ Net::Statsd::Lite::Test Test::Roo::DataDriven /;
 
 1;
 
@@ -19,6 +19,6 @@ use Devel::StrictMode;
 use Test::More;
 use if STRICT, "Test::Warnings";
 
-Net::Statsd::Tiny::Test::Class->run_data_tests( files => 't/data', );
+Net::Statsd::Lite::Test::Class->run_data_tests( files => 't/data', );
 
 done_testing;

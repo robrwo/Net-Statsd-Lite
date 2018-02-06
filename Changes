@@ -1,6 +1,7 @@
-Revision history for Net-Statsd-Tiny
+Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
+ - Forked from Net::Statsd::Tiny.
 
 v0.2.1    2018-02-06 09:25:32+00:00 Europe/London
   [Tests]

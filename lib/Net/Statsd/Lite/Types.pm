@@ -1,6 +1,6 @@
-package Net::Statsd::Tiny::Types;
+package Net::Statsd::Lite::Types;
 
-# ABSTRACT: A type library for Net::Statsd::Tiny
+# ABSTRACT: A type library for Net::Statsd::Lite
 
 use strict;
 use warnings;
@@ -10,7 +10,7 @@ use Type::Utils -all;
 
 BEGIN { extends "Types::Standard" }
 
-our $VERSION = 'v0.2.2';
+our $VERSION = 'v0.3.0';
 
 =head1 DESCRIPTION
 

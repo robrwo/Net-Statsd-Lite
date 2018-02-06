@@ -1,10 +1,10 @@
 # NAME
 
-Net::Statsd::Tiny - A tiny StatsD client
+Net::Statsd::Lite - A lightweight StatsD client that supports multimetric packets
 
 # VERSION
 
-version v0.2.1
+version v0.3.0
 
 # SYNOPSIS
 
@@ -203,6 +203,8 @@ This sends the buffer to the ["host"](#host) and empties the buffer, if there
 is any data in the buffer.
 
 # SEE ALSO
+
+This module was forked from [Net::Statsd::Tiny](https://metacpan.org/pod/Net::Statsd::Tiny).
 
 [https://github.com/b/statsd\_spec](https://github.com/b/statsd_spec)
 

@@ -1,6 +1,6 @@
-package Net::Statsd::Tiny;
+package Net::Statsd::Lite;
 
-# ABSTRACT: A tiny StatsD client
+# ABSTRACT: A lightweight StatsD client that supports multimetric packets
 
 # RECOMMEND PREREQ: Type::Tiny::XS
 
@@ -13,11 +13,11 @@ use IO::String;
 use MooX::TypeTiny;
 use Sub::Quote qw/ quote_sub /;
 use Sub::Util 1.40 qw/ set_subname /;
-use Net::Statsd::Tiny::Types -types;
+use Net::Statsd::Lite::Types -types;
 
 use namespace::autoclean;
 
-our $VERSION = 'v0.2.2';
+our $VERSION = 'v0.3.0';
 
 =head1 SYNOPSIS
 
@@ -392,6 +392,8 @@ sub DEMOLISH {
 }
 
 =head1 SEE ALSO
+
+This module was forked from L<Net::Statsd::Tiny>.
 
 L<https://github.com/b/statsd_spec>
 

@@ -1,4 +1,4 @@
-package Net::Statsd::Tiny::Test;
+package Net::Statsd::Lite::Test;
 
 use Test::Roo::Role;
 
@@ -7,7 +7,7 @@ use curry;
 use IO::Select;
 use Net::EmptyPort qw/ listen_socket /;
 
-use Net::Statsd::Tiny;
+use Net::Statsd::Lite;
 
 has proto => (
     is      => 'ro',
@@ -99,7 +99,7 @@ sub test_udp {
     }
     if ( defined $pid ) {
 
-        my $client = Net::Statsd::Tiny->new(
+        my $client = Net::Statsd::Lite->new(
             port            => $socket->sockport,
             host            => $self->host,
             proto           => $self->proto,
