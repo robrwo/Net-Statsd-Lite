@@ -280,8 +280,6 @@ BEGIN {
 
     foreach my $name ( keys %PROTOCOL ) {
 
-        no strict 'refs'; ## no critic (ProhibitNoStrict)
-
         my $type = $PROTOCOL{$name}[1];
         my $rate = $PROTOCOL{$name}[2];
 
