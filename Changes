@@ -4,6 +4,9 @@ Revision history for Net-Statsd-Lite
   [Other Changes]
   - Removed useless "no strict".
 
+  [Incompatible Changes]
+  - Removed add_set method.
+
 v0.3.1    2018-02-06 16:37:55+00:00 Europe/London
   [Documentation]
   - Fixed SYNOPSIS references to Net::Statsd::Tiny

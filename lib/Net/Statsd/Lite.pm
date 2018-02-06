@@ -322,7 +322,6 @@ BEGIN {
 
         *{"${class}::update"}    = set_subname "update"    => \&counter;
         *{"${class}::timing_ms"} = set_subname "timing_ms" => \&timing;
-        *{"${class}::add_set"}   = set_subname "timing_ms" => \&set_add;
 
     }
 
