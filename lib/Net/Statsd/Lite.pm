@@ -17,7 +17,7 @@ use Net::Statsd::Lite::Types -types;
 
 use namespace::autoclean;
 
-our $VERSION = 'v0.3.0';
+our $VERSION = 'v0.3.1';
 
 =head1 SYNOPSIS
 
