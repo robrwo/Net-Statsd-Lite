@@ -4,14 +4,14 @@ Net::Statsd::Lite - A lightweight StatsD client that supports multimetric packet
 
 # VERSION
 
-version v0.3.0
+version v0.3.1
 
 # SYNOPSIS
 
 ```perl
-use Net::Statsd::Tiny;
+use Net::Statsd::Lite;
 
-my $stats = Net::Statsd::Tiny->new(
+my $stats = Net::Statsd::Lite->new(
   prefix          => 'myapp.',
   autoflush       => 0,
   max_buffer_size => 8192,
