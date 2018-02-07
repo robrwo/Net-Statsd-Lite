@@ -347,9 +347,11 @@ sub _record {
 
     my $len = length($data);
 
-    if ( $len >= $self->max_buffer_size ) {
-        warn "Data is too large";
-        return;
+    if (STRICT) {
+        if ( $len >= $self->max_buffer_size ) {
+            warn "Data is too large";
+            return;
+        }
     }
 
     my $index = refaddr $self;
