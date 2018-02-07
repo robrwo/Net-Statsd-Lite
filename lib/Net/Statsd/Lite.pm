@@ -342,7 +342,7 @@ sub _record {
     my $data = $self->prefix . sprintf( $template . "\n", @args );
 
     if ( $self->autoflush ) {
-        return $self->_send( $data, 0 );
+        send( $self->_socket, $data, 0 );
     }
 
     my $len = length($data);
@@ -374,8 +374,8 @@ sub flush {
     my ($self) = @_;
 
     my $index = refaddr $self;
-    if ( $Buffers{$index} ) {
-        $self->_send( $Buffers{$index}, 0 );
+    if ( $Buffers{$index} ne '' ) {
+        send( $self->_socket, $Buffers{$index}, 0 );
         $Buffers{$index} = '';
     }
 }

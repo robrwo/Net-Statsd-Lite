@@ -9,6 +9,8 @@ Revision history for Net-Statsd-Lite
 
   - Improve performance when autoflush is enabled.
 
+  - Improve performance for sending UDP packets.
+
   [Bug Fixes]
   - Sample rates are honoured properly.
 
