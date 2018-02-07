@@ -1,6 +1,10 @@
 Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
+  [Enhancements]
+  - Removed the use of IO::String, which increases the performance
+    significantly.
+
   [Other Changes]
   - Removed useless "no strict".
 

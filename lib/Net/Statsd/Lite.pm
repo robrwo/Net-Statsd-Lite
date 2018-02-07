@@ -9,8 +9,8 @@ use v5.10;
 use Moo 1.000000;
 
 use IO::Socket 1.18 ();
-use IO::String;
 use MooX::TypeTiny;
+use Scalar::Util qw/ refaddr /;
 use Sub::Quote qw/ quote_sub /;
 use Sub::Util 1.40 qw/ set_subname /;
 use Net::Statsd::Lite::Types -types;
@@ -134,13 +134,7 @@ has autoflush => (
     default => 1,
 );
 
-has _buffer => (
-    is      => 'lazy',
-    isa     => InstanceOf ['IO::String'],
-    builder => sub {
-        IO::String->new;
-    },
-);
+my %Buffers;
 
 =attribute C<max_buffer_size>
 
@@ -309,16 +303,15 @@ BEGIN {
         }
 
         quote_sub "${class}::${name}", $code,
-          { '$tmpl' => \$tmpl },
+          { '$tmpl'  => \$tmpl },
           { no_defer => 1 };
-
 
     }
 
     # Alises for other Net::Statsd::Client or Etsy::StatsD
 
     {
-        no strict 'refs'; ## no critic (ProhibitNoStrict)
+        no strict 'refs';    ## no critic (ProhibitNoStrict)
 
         *{"${class}::update"}    = set_subname "update"    => \&counter;
         *{"${class}::timing_ms"} = set_subname "timing_ms" => \&timing;
@@ -342,7 +335,6 @@ sub _record {
 
     my $data = $self->prefix . sprintf( $template, @args );
 
-    my $fh  = $self->_buffer;
     my $len = length($data);
 
     if ( $len >= $self->max_buffer_size ) {
@@ -350,12 +342,13 @@ sub _record {
         return $self;
     }
 
-    $len += length( ${ $fh->string_ref } );
+    my $index = refaddr $self;
+    $len += length( $Buffers{$index} );
     if ( $len >= $self->max_buffer_size ) {
         $self->flush;
     }
 
-    say {$fh} $data;
+    $Buffers{$index} .= $data . "\n";
 
     $self->flush if $self->autoflush;
 }
@@ -370,14 +363,17 @@ is any data in the buffer.
 sub flush {
     my ($self) = @_;
 
-    my $fh = $self->_buffer;
-
-    my $data = ${ $fh->string_ref };
-
-    if ( length($data) ) {
-        $self->_send( $data, 0 );
-        $fh->truncate;
+    my $index = refaddr $self;
+    if ( $Buffers{$index} ) {
+        $self->_send( $Buffers{$index}, 0 );
+        $Buffers{$index} = '';
     }
+}
+
+sub BUILD {
+    my ($self) = @_;
+
+    $Buffers{ refaddr $self } = '';
 }
 
 sub DEMOLISH {
