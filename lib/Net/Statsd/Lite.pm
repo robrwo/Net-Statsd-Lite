@@ -297,7 +297,8 @@ BEGIN {
         if ( defined $rate ) {
 
             $code .= q/ if ((defined $rate) && ($rate<1)) {
-                     $self->_record( $tmpl . '|@%f', $metric, $value, $rate );
+                     $self->_record( $tmpl . '|@%f', $metric, $value, $rate )
+                        if rand() <= $rate;
                    } else {
                      $self->_record( $tmpl, $metric, $value ); } /;
         }

@@ -53,7 +53,14 @@ test "test client" => sub {
     my ($self) = @_;
 
     my $result = $self->test_udp( $self->curry::send_tests );
-    is $result, $self->output, 'expected result';
+
+  TODO: {
+
+      local $TODO = "random sample" if $self->output =~ /\|\@\d/;
+
+      is $result, $self->output, 'expected result';
+
+    }
 };
 
 sub send_tests {

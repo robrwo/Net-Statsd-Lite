@@ -9,6 +9,9 @@ Revision history for Net-Statsd-Lite
 
   - Improve performance when autoflush is enabled.
 
+  [Bug Fixes]
+  - Sample rates are honoured properly.
+
   [Other Changes]
   - Removed useless "no strict".
 
