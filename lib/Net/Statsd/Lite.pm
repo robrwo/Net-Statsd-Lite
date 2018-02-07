@@ -383,8 +383,10 @@ sub DEMOLISH {
 
 =head1 STRICT MODE
 
-If this module is first loaded in C<STRICT> mode, then the data types
-will be checked. See L<Devel::StrictMode> for more information.
+If this module is first loaded in C<STRICT> mode, then the values and
+rate arguments will be checked that thet are the correct type.
+
+See L<Devel::StrictMode> for more information.
 
 =head1 SEE ALSO
 
