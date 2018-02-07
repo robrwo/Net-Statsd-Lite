@@ -265,12 +265,12 @@ BEGIN {
     my $class = __PACKAGE__;
 
     my %PROTOCOL = (
-        set_add   => [ 's',  Str, ],
-        counter   => [ 'c',  Int, 1 ],
-        gauge     => [ 'g',  Gauge | PosInt ],
-        histogram => [ 'h',  PosNum ],
-        meter     => [ 'm',  PosInt ],
-        timing    => [ 'ms', PosNum, 1 ],
+        set_add   => [ '|s',  Str, ],
+        counter   => [ '|c',  Int, 1 ],
+        gauge     => [ '|g',  Gauge | PosInt ],
+        histogram => [ '|h',  PosNum ],
+        meter     => [ '|m',  PosInt ],
+        timing    => [ '|ms', PosNum, 1 ],
     );
 
     foreach my $name ( keys %PROTOCOL ) {
@@ -292,12 +292,12 @@ BEGIN {
               if defined $rate;
         }
 
-        my $tmpl = '%s:%s|' . $PROTOCOL{$name}[0];
+        my $tmpl  = $PROTOCOL{$name}[0];
 
         if ( defined $rate ) {
 
             $code .= q/ if ((defined $rate) && ($rate<1)) {
-                     $self->_record( $tmpl . '|@%f', $metric, $value, $rate )
+                     $self->_record( $tmpl . '|@' . $rate, $metric, $value )
                         if rand() <= $rate;
                    } else {
                      $self->_record( $tmpl, $metric, $value ); } /;
@@ -337,9 +337,9 @@ sub decrement {
 }
 
 sub _record {
-    my ( $self, $template, @args ) = @_;
+    my ( $self, $suffix, $metric, $value ) = @_;
 
-    my $data = $self->prefix . sprintf( $template . "\n", @args );
+    my $data = $self->prefix . $metric . ':' . $value . $suffix . "\n";
 
     if ( $self->autoflush ) {
         send( $self->_socket, $data, 0 );
