@@ -338,24 +338,26 @@ sub decrement {
 sub _record {
     my ( $self, $template, @args ) = @_;
 
-    my $data = $self->prefix . sprintf( $template, @args );
+    my $data = $self->prefix . sprintf( $template . "\n", @args );
+
+    if ( $self->autoflush ) {
+        return $self->_send( $data, 0 );
+    }
 
     my $len = length($data);
 
     if ( $len >= $self->max_buffer_size ) {
         warn "Data is too large";
-        return $self;
+        return;
     }
 
     my $index = refaddr $self;
-    $len += length( $Buffers{$index} );
-    if ( $len >= $self->max_buffer_size ) {
+    if ( ( $len + length( $Buffers{$index} ) ) >= $self->max_buffer_size ) {
         $self->flush;
     }
 
-    $Buffers{$index} .= $data . "\n";
+    $Buffers{$index} .= $data;
 
-    $self->flush if $self->autoflush;
 }
 
 =method C<flush>

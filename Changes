@@ -7,6 +7,8 @@ Revision history for Net-Statsd-Lite
 
   - Type checking of values is only done when run in strict mode.
 
+  - Improve performance when autoflush is enabled.
+
   [Other Changes]
   - Removed useless "no strict".
 
