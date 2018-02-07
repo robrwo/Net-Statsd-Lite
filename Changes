@@ -1,6 +1,8 @@
 Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
+
+v0.4.0    2018-02-07 21:41:25+00:00 Europe/London
   [Enhancements]
   - Removed the use of IO::String, which increases the performance
     significantly.
