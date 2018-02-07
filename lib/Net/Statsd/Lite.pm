@@ -8,6 +8,7 @@ use v5.10;
 
 use Moo 1.000000;
 
+use Devel::StrictMode;
 use IO::Socket 1.18 ();
 use MooX::TypeTiny;
 use Scalar::Util qw/ refaddr /;
@@ -282,10 +283,14 @@ BEGIN {
           ? q{ my ($self, $metric, $value, $rate) = @_; }
           : q{ my ($self, $metric, $value) = @_; };
 
-        $code .= $type->inline_assert('$value');
+        if (STRICT) {
 
-        $code .= q/ if (defined $rate) { / . Rate->inline_assert('$rate') . ' }'
-          if defined $rate;
+            $code .= $type->inline_assert('$value');
+
+            $code .=
+              q/ if (defined $rate) { / . Rate->inline_assert('$rate') . ' }'
+              if defined $rate;
+        }
 
         my $tmpl = '%s:%s|' . $PROTOCOL{$name}[0];
 

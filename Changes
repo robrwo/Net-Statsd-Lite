@@ -5,6 +5,8 @@ Revision history for Net-Statsd-Lite
   - Removed the use of IO::String, which increases the performance
     significantly.
 
+  - Type checking of values is only done when run in strict mode.
+
   [Other Changes]
   - Removed useless "no strict".
 

@@ -1,3 +1,4 @@
+requires "Devel::StrictMode" => "0";
 requires "IO::Socket" => "1.18";
 requires "Moo" => "1.000000";
 requires "MooX::TypeTiny" => "0";
@@ -15,7 +16,6 @@ recommends "Type::Tiny::XS" => "0";
 
 on 'test' => sub {
   requires "Carp" => "0";
-  requires "Devel::StrictMode" => "0";
   requires "File::Spec" => "0";
   requires "IO::Select" => "0";
   requires "Module::Metadata" => "0";
