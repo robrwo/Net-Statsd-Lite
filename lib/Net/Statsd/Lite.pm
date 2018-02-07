@@ -338,6 +338,7 @@ sub _record {
 
     if ( $self->autoflush ) {
         send( $self->_socket, $data, 0 );
+        return;
     }
 
     my $index = refaddr $self;
