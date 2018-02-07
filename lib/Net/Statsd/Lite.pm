@@ -380,6 +380,11 @@ sub DEMOLISH {
     $self->flush;
 }
 
+=head1 STRICT MODE
+
+If this module is first loaded in C<STRICT> mode, then the data types
+will be checked. See L<Devel::StrictMode> for more information.
+
 =head1 SEE ALSO
 
 This module was forked from L<Net::Statsd::Tiny>.
