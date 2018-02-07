@@ -345,19 +345,10 @@ sub _record {
         send( $self->_socket, $data, 0 );
     }
 
-    my $len = length($data);
-
-    if (STRICT) {
-        if ( $len >= $self->max_buffer_size ) {
-            warn "Data is too large";
-            return;
-        }
-    }
-
     my $index = refaddr $self;
-    if ( ( $len + length( $Buffers{$index} ) ) >= $self->max_buffer_size ) {
-        $self->flush;
-    }
+    my $avail = $self->max_buffer_size - length( $Buffers{$index} );
+
+    $self->flush if length($data) > $avail;
 
     $Buffers{$index} .= $data;
 
