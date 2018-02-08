@@ -1,6 +1,8 @@
 Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
+  [Documentation]
+  - Fixed reference to the wrong module in Net::Statsd::Lite::Types.
 
 v0.4.0    2018-02-07 21:41:25+00:00 Europe/London
   [Enhancements]

@@ -14,7 +14,7 @@ our $VERSION = 'v0.4.1';
 
 =head1 DESCRIPTION
 
-This module provides types for L<Net::Statsd::Tiny>.
+This module provides types for L<Net::Statsd::Lite>.
 
 The types declared here are intended for internal use, and subject to
 change.
