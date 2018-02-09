@@ -2,6 +2,7 @@ requires "Devel::StrictMode" => "0";
 requires "IO::Socket" => "1.18";
 requires "Moo" => "1.000000";
 requires "MooX::TypeTiny" => "0";
+requires "Scalar::Util" => "0";
 requires "Sub::Quote" => "0";
 requires "Sub::Util" => "1.40";
 requires "Thrift::XS::MemoryBuffer" => "0";
