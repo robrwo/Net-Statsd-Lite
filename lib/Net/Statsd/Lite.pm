@@ -11,9 +11,10 @@ use Moo 1.000000;
 use Devel::StrictMode;
 use IO::Socket 1.18 ();
 use MooX::TypeTiny;
-use Scalar::Util qw/ refaddr /;
 use Sub::Quote qw/ quote_sub /;
 use Sub::Util 1.40 qw/ set_subname /;
+use Thrift::XS::MemoryBuffer;
+
 use Net::Statsd::Lite::Types -types;
 
 use namespace::autoclean;
@@ -135,8 +136,6 @@ has autoflush => (
     default => 1,
 );
 
-my %Buffers;
-
 =attribute C<max_buffer_size>
 
 The specifies the maximum buffer size. It defaults to C<512>.
@@ -148,6 +147,25 @@ has max_buffer_size => (
     isa     => PosInt,
     default => 512,
 );
+
+has _buffer => (
+    is => 'lazy',
+    isa => InstanceOf['Thrift::XS::MemoryBuffer'],
+    builder => sub {
+        my ($self) = @_;
+        Thrift::XS::MemoryBuffer->new( $self->max_buffer_size );
+    },
+    handles => {
+        _buffer_size => 'available',
+        _buffer_write => 'write',
+        _buffer_read => 'read',
+    },
+);
+
+sub _buffer_free {
+    my ($self) = @_;
+    $self->max_buffer_size - $self->_buffer_size;
+}
 
 has _socket => (
     is      => 'lazy',
@@ -341,12 +359,11 @@ sub _record {
         return;
     }
 
-    my $index = refaddr $self;
-    my $avail = $self->max_buffer_size - length( $Buffers{$index} );
 
-    $self->flush if length($data) > $avail;
+    my $len = length($data);
+    $self->flush if $len > $self->_buffer_free;;
 
-    $Buffers{$index} .= $data;
+    $self->_buffer_write($data, $len);
 
 }
 
@@ -360,17 +377,15 @@ is any data in the buffer.
 sub flush {
     my ($self) = @_;
 
-    my $index = refaddr $self;
-    if ( $Buffers{$index} ne '' ) {
-        send( $self->_socket, $Buffers{$index}, 0 );
-        $Buffers{$index} = '';
-    }
+    my $size = $self->_buffer_size or return;
+
+    send( $self->_socket, $self->_buffer_read( $size ), 0);
 }
 
 sub BUILD {
     my ($self) = @_;
 
-    $Buffers{ refaddr $self } = '';
+    $self->_buffer->open;
 }
 
 sub DEMOLISH {
