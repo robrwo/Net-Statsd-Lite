@@ -115,6 +115,8 @@ sub test_udp {
             autoflush       => $self->autoflush,
         );
 
+        sleep 1; # wait for server to start
+
         $callback->($client);
 
         exit 0;

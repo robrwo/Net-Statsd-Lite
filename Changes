@@ -4,6 +4,9 @@ Revision history for Net-Statsd-Lite
   [Documentation]
   - Fixed reference to the wrong module in Net::Statsd::Lite::Types.
 
+  [Tests]
+  - Add sleep to give a chance for the test server to start.
+
 v0.4.0    2018-02-07 21:41:25+00:00 Europe/London
   [Enhancements]
   - Removed the use of IO::String, which increases the performance
