@@ -5,7 +5,7 @@ use Test::Roo::Role;
 use Carp;
 use curry;
 use IO::Select;
-use Net::EmptyPort qw/ listen_socket /;
+use IO::Socket;
 
 use Net::Statsd::Lite;
 
@@ -80,8 +80,11 @@ sub send_tests {
 sub test_udp {
     my ( $self, $callback ) = @_;
 
-    my $socket = listen_socket( { proto => $self->proto } )
-        or croak $!;
+    my $socket = IO::Socket::INET->new(
+        LocalAddr => '127.0.0.1',
+        LocalPort => 0,
+        Proto     => $self->proto,
+    ) or croak $!;
 
     my $pid = fork;
     if ($pid) {
