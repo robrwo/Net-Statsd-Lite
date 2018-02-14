@@ -1,6 +1,8 @@
 Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
+
+v0.4.2    2018-02-14 00:38:33+00:00 Europe/London
   [Tests]
   - Remove the use of Test::TCP in an attempt to work around Windows
     test failures.
