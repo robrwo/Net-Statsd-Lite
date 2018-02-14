@@ -56,19 +56,19 @@ test "test client" => sub {
 
   TODO: {
 
-      local $TODO = "random sample" if $self->output =~ /\|\@\d/;
+        local $TODO = "random sample" if $self->output =~ /\|\@\d/;
 
-      is $result, $self->output, 'expected result';
+        is $result, $self->output, 'expected result';
 
     }
 };
 
 sub send_tests {
-    my ($self, $client) = @_;
+    my ( $self, $client ) = @_;
 
-    foreach my $action (@{ $self->input }) {
+    foreach my $action ( @{ $self->input } ) {
 
-        my ($method, @args) = @{ $action };
+        my ( $method, @args ) = @{$action};
         $client->$method(@args);
 
     }
@@ -118,7 +118,7 @@ sub test_udp {
             autoflush       => $self->autoflush,
         );
 
-        sleep 1; # wait for server to start
+        sleep 1;    # wait for server to start
 
         $callback->($client);
 

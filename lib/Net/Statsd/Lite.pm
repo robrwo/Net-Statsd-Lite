@@ -287,7 +287,7 @@ BEGIN {
               if defined $rate;
         }
 
-        my $tmpl  = $PROTOCOL{$name}[0];
+        my $tmpl = $PROTOCOL{$name}[0];
 
         if ( defined $rate ) {
 
