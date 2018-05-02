@@ -1,6 +1,8 @@
 Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
+  [Toolchain]
+  - Removed core and redundant prereqs.
 
 v0.4.2    2018-02-14 00:38:33+00:00 Europe/London
   [Tests]
