@@ -384,7 +384,7 @@ sub DEMOLISH {
 =head1 STRICT MODE
 
 If this module is first loaded in C<STRICT> mode, then the values and
-rate arguments will be checked that thet are the correct type.
+rate arguments will be checked that they are the correct type.
 
 See L<Devel::StrictMode> for more information.
 

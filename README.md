@@ -200,7 +200,7 @@ is any data in the buffer.
 # STRICT MODE
 
 If this module is first loaded in `STRICT` mode, then the values and
-rate arguments will be checked that thet are the correct type.
+rate arguments will be checked that they are the correct type.
 
 See [Devel::StrictMode](https://metacpan.org/pod/Devel::StrictMode) for more information.
 

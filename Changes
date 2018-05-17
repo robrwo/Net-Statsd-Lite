@@ -1,6 +1,9 @@
 Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
+  [Documentation]
+  - Fixed minor typo in POD.
+
   [Toolchain]
   - Removed core and redundant prereqs.
 
