@@ -2,6 +2,8 @@ package Net::Statsd::Lite::Types;
 
 # ABSTRACT: A type library for Net::Statsd::Lite
 
+# RECOMMEND PREREQ: Type::Tiny::XS
+
 use strict;
 use warnings;
 
