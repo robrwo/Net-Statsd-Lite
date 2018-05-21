@@ -1,6 +1,8 @@
 Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
+
+v0.4.3    2018-05-21 21:55:30+01:00 Europe/London
   [Documentation]
   - Fixed minor typo in POD.
 
