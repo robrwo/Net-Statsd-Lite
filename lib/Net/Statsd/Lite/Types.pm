@@ -23,9 +23,13 @@ change.
 
 =cut
 
+# See also Types::Common::Numeric PositiveOrZeroInt
+
 declare "PosInt", as Int,
   where { $_ >= 0 },
   inline_as { my $n = $_[1]; (undef, "$n >= 0") };
+
+# See also Types::Common::Numeric PositiveOrZeroNum
 
 declare "PosNum", as StrictNum,
   where { $_ >= 0 },
@@ -33,7 +37,7 @@ declare "PosNum", as StrictNum,
 
 declare "Port", as "PosInt",
   where { $_ >= 0 && $_ <= 65535 },
-  inline_as { my $port = $_[1]; (undef, "$port >= 0 && $port <= 65535") };
+  inline_as { my $port = $_[1]; (undef, "$port <= 65535") };
 
 declare "Rate", as StrictNum,
   where { $_ >= 0 && $_ <= 1 },
