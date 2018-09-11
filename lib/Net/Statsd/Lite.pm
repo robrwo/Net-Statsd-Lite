@@ -245,6 +245,9 @@ This logs a value so that statistics about the metric can be
 gathered. The C<$value> must be a positive number, although the
 specification recommends that integers be used.
 
+This metric type is not supported by many StatsD daemons. You can use
+L</timing> for the same effect.
+
 =method C<set_add>
 
   $stats->set_add( $metric, $string );
