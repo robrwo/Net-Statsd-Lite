@@ -1,6 +1,8 @@
 Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
+
+v0.4.5    2018-09-11 23:22:09+01:00 Europe/London
   [Documentation]
   - Added a note about the histogram method not being supported
     by most StatsD daemons.
