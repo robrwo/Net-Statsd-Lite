@@ -1,6 +1,8 @@
 Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
+  [Documentation]
+  - Added INSTALL file to the distribution.
 
 v0.4.6    2018-09-11 23:36:11+01:00 Europe/London
   [Tests]
