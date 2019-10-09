@@ -1,6 +1,8 @@
 Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
+  [Tests]
+  - Bumped minimum version prerequisite for Test::TCP.
 
 v0.4.8    2019-07-21 11:37:59+01:00 Europe/London
   [Tests]
