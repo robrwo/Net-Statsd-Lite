@@ -12,7 +12,7 @@ use Type::Utils -all;
 
 BEGIN { extends "Types::Standard" }
 
-our $VERSION = 'v0.4.9';
+our $VERSION = 'v0.4.10';
 
 =head1 DESCRIPTION
 
