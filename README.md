@@ -236,7 +236,7 @@ Library [https://www.sciencephoto.com](https://www.sciencephoto.com).
 
 # CONTRIBUTORS
 
-- Michael R. Davis <mrdvt92@users.noreply.github.com>
+- Michael R. Davis <mrdvt@cpan.org>
 - Toby Inkster <tobyink@cpan.org>
 
 # COPYRIGHT AND LICENSE
