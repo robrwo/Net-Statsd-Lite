@@ -1,6 +1,9 @@
 Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
+  [Documentation]
+  - Fixed typo, thanks @mrdvt92.
+
   [Tests]
   - Bumped minimum version prerequisite for Test::TCP.
 
