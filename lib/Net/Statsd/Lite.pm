@@ -19,7 +19,7 @@ use namespace::autoclean;
 
 # RECOMMEND PREREQ: Ref::Util::XS
 
-our $VERSION = 'v0.4.11';
+our $VERSION = 'v0.5.0';
 
 =head1 SYNOPSIS
 
@@ -351,7 +351,7 @@ This is an internal method for sending the data to the server.
 
   $stats->record_metric( $suffix, $metric, $value, $opts );
 
-This was renamed and documented in v0.4.11 to to simplify subclassing
+This was renamed and documented in v0.5.0 to to simplify subclassing
 that supports extensions to statsd, such as tagging.
 
 =cut
