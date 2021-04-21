@@ -2,16 +2,18 @@ Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
   [Documentation]
-  - Update copyright year.
+  - Updated copyright year.
 
   - Fixed typo for `meter` method name.
+
+  - Fixed typos in Changes.
 
   [Tests]
   - Add more author tests.
 
 v0.4.10   2020-07-31 14:52:09+01:00 Europe/London
   [Documentation]
-  - Update copyright year.
+  - Updated copyright year.
 
   [Toolchain]
   - Add core modules in the prerequisites.
