@@ -21,6 +21,7 @@ on 'test' => sub {
   requires "Carp" => "0";
   requires "File::Spec" => "0";
   requires "IO::Select" => "0";
+  requires "Module::Load" => "0";
   requires "Module::Metadata" => "0";
   requires "Net::EmptyPort" => "0";
   requires "Socket" => "0";

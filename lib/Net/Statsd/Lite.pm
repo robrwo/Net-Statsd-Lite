@@ -354,6 +354,8 @@ This is an internal method for sending the data to the server.
 This was renamed and documented in v0.5.0 to to simplify subclassing
 that supports extensions to statsd, such as tagging.
 
+See the discussion of tagging extensions below.
+
 =cut
 
 sub record_metric {
@@ -412,6 +414,25 @@ If this module is first loaded in C<STRICT> mode, then the values and
 rate arguments will be checked that they are the correct type.
 
 See L<Devel::StrictMode> for more information.
+
+=head1 TAGGING EXTENSIONS
+
+This class does not support tagging out-of-the box. But tagging can be
+added easily to a subclass, for example, L<DogStatsd|https://www.datadoghq.com/> tagging can be added
+using something like
+
+  use Moo 1.000000;
+  extends 'Net::Statsd::Lite';
+
+  around record_metric => sub {
+      my ( $next, $self, $suffix, $metric, $value, $opts ) = @_;
+
+      if ( my $tags = $opts->{tags} ) {
+          $suffix .= "|#" . join ",", map { s/|//g; $_ } @$tags;
+      }
+
+      $self->$next( $suffix, $metric, $value, $opts );
+  };
 
 =head1 SEE ALSO
 

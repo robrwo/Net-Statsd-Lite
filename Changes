@@ -10,6 +10,8 @@ Revision history for Net-Statsd-Lite
   [Documentation]
   - Documented `record_metric` method for subclassing.
 
+  - Documented how to extend this to support tagging.
+
   - Updated copyright year.
 
   - Fixed typo for `meter` method name.

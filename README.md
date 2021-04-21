@@ -212,6 +212,8 @@ $stats->record_metric( $suffix, $metric, $value, $opts );
 This was renamed and documented in v0.5.0 to to simplify subclassing
 that supports extensions to statsd, such as tagging.
 
+See the discussion of tagging extensions below.
+
 ## `flush`
 
 This sends the buffer to the ["host"](#host) and empties the buffer, if there
@@ -223,6 +225,27 @@ If this module is first loaded in `STRICT` mode, then the values and
 rate arguments will be checked that they are the correct type.
 
 See [Devel::StrictMode](https://metacpan.org/pod/Devel::StrictMode) for more information.
+
+# TAGGING EXTENSIONS
+
+This class does not support tagging out-of-the box. But tagging can be
+added easily to a subclass, for example, [DogStatsd](https://www.datadoghq.com/) tagging can be added
+using something like
+
+```perl
+use Moo 1.000000;
+extends 'Net::Statsd::Lite';
+
+around record_metric => sub {
+    my ( $next, $self, $suffix, $metric, $value, $opts ) = @_;
+
+    if ( my $tags = $opts->{tags} ) {
+        $suffix .= "|#" . join ",", map { s/|//g; $_ } @$tags;
+    }
+
+    $self->$next( $suffix, $metric, $value, $opts );
+};
+```
 
 # SEE ALSO
 
