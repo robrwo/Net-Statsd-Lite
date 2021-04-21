@@ -195,9 +195,9 @@ This is an alias for
 
   $stats->counter( $metric, -1, $rate );
 
-=method C<metric>
+=method C<meter>
 
-  $stats->metric( $metric, $value );
+  $stats->meter( $metric, $value );
 
 This is a counter that only accepts positive (increasing) values. It
 is appropriate for counters that will never decrease (e.g. the number

@@ -125,10 +125,10 @@ This is an alias for
 $stats->counter( $metric, -1, $rate );
 ```
 
-## `metric`
+## `meter`
 
 ```
-$stats->metric( $metric, $value );
+$stats->meter( $metric, $value );
 ```
 
 This is a counter that only accepts positive (increasing) values. It
