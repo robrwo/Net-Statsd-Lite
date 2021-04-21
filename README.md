@@ -201,6 +201,17 @@ $stats->set_add( $metric, $string, $opts );
 This adds the the `$string` to a set, for logging the number of
 unique things, e.g. IP addresses or usernames.
 
+## record\_metric
+
+This is an internal method for sending the data to the server.
+
+```
+$stats->record_metric( $suffix, $metric, $value, $opts );
+```
+
+This was renamed and documented in v0.4.11 to to simplify subclassing
+that supports extensions to statsd, such as tagging.
+
 ## `flush`
 
 This sends the buffer to the ["host"](#host) and empties the buffer, if there

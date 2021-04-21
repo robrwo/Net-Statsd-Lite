@@ -306,14 +306,14 @@ BEGIN {
         if ( defined $rate ) {
 
             $code .= q/ if ((defined $rate) && ($rate<1)) {
-                     $self->_record( $tmpl . '|@' . $rate, $metric, $value, $opts )
+                     $self->record_metric( $tmpl . '|@' . $rate, $metric, $value, $opts )
                         if rand() <= $rate;
                    } else {
-                     $self->_record( $tmpl, $metric, $value, $opts ); } /;
+                     $self->record_metric( $tmpl, $metric, $value, $opts ); } /;
         }
         else {
 
-            $code .= q{$self->_record( $tmpl, $metric, $value, $opts );};
+            $code .= q{$self->record_metric( $tmpl, $metric, $value, $opts );};
 
         }
 
@@ -345,7 +345,18 @@ sub decrement {
     $self->counter( $metric, -1, $opts );
 }
 
-sub _record {
+=method record_metric
+
+This is an internal method for sending the data to the server.
+
+  $stats->record_metric( $suffix, $metric, $value, $opts );
+
+This was renamed and documented in v0.4.11 to to simplify subclassing
+that supports extensions to statsd, such as tagging.
+
+=cut
+
+sub record_metric {
     my ( $self, $suffix, $metric, $value ) = @_;
 
     my $data = $self->prefix . $metric . ':' . $value . $suffix . "\n";

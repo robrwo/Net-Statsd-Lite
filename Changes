@@ -5,7 +5,11 @@ Revision history for Net-Statsd-Lite
   - All measurement methods take an optional `$opts` hashref that can
     be used to pass additiona information, such as tags.
 
+  - Renamed internal `_record` method to `record_metric`.
+
   [Documentation]
+  - Documented `record_metric` method for subclassing.
+
   - Updated copyright year.
 
   - Fixed typo for `meter` method name.
