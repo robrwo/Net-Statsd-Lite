@@ -1,6 +1,10 @@
 Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
+  [Enhancements]
+  - All measurement methods take an optional `$opts` hashref that can
+    be used to pass additiona information, such as tags.
+
   [Documentation]
   - Updated copyright year.
 

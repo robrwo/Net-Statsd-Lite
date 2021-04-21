@@ -87,11 +87,14 @@ Specifies the maximum buffer size. It defaults to `512`.
 ## `counter`
 
 ```
-$stats->counter( $metric, $value, $rate );
+$stats->counter( $metric, $value, $opts );
 ```
 
 This adds the `$value` to the counter specified by the `$metric`
 name.
+
+`$opts` can be a hash reference with the `rate` key, or a simple
+scalar with the `$rate`.
 
 If a `$rate` is specified and less than 1, then a sampling rate will
 be added. `$rate` must be between 0 and 1.
@@ -104,31 +107,31 @@ This is an alias for ["counter"](#counter), for compatability with
 ## `increment`
 
 ```
-$stats->increment( $metric, $rate );
+$stats->increment( $metric, $opts );
 ```
 
 This is an alias for
 
 ```
-$stats->counter( $metric, 1, $rate );
+$stats->counter( $metric, 1, $opts );
 ```
 
 ## `decrement`
 
 ```
-$stats->decrement( $metric, $rate );
+$stats->decrement( $metric, $opts );
 ```
 
 This is an alias for
 
 ```
-$stats->counter( $metric, -1, $rate );
+$stats->counter( $metric, -1, $opts );
 ```
 
 ## `meter`
 
 ```
-$stats->meter( $metric, $value );
+$stats->meter( $metric, $value, $opts );
 ```
 
 This is a counter that only accepts positive (increasing) values. It
@@ -139,7 +142,7 @@ many StatsD daemons.
 ## `gauge`
 
 ```
-$stats->gauge( $metric, $value );
+$stats->gauge( $metric, $value, $opts );
 ```
 
 A gauge can be thought of as a counter that is maintained by the
@@ -153,7 +156,7 @@ by that amount.
 ## `timing`
 
 ```
-$stats->timing( $metric, $value, $rate );
+$stats->timing( $metric, $value, $opts );
 ```
 
 This logs a "timing" in milliseconds, so that statistics about the
@@ -163,6 +166,9 @@ although the specification recommends that integers be used.
 In actually, any values can be logged, and this is often used as a
 generic histogram for non-timing values (especially since many StatsD
 daemons do not support the ["histogram"](#histogram) metric type).
+
+`$opts` can be a hash reference with a `rate` key, or a simple
+scalar with the `$rate`.
 
 If a `$rate` is specified and less than 1, then a sampling rate will
 be added. `$rate` must be between 0 and 1.  Note that sampling
@@ -176,7 +182,7 @@ This is an alias for ["timing"](#timing), for compatability with
 ## `histogram`
 
 ```
-$stats->histogram( $metric, $value );
+$stats->histogram( $metric, $value, $opts );
 ```
 
 This logs a value so that statistics about the metric can be
@@ -189,7 +195,7 @@ This metric type is not supported by many StatsD daemons. You can use
 ## `set_add`
 
 ```
-$stats->set_add( $metric, $string );
+$stats->set_add( $metric, $string, $opts );
 ```
 
 This adds the the `$string` to a set, for logging the number of

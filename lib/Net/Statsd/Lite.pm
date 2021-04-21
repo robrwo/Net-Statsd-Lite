@@ -9,12 +9,15 @@ use Moo 1.000000;
 use Devel::StrictMode;
 use IO::Socket 1.18 ();
 use MooX::TypeTiny;
+use Ref::Util qw/ is_plain_hashref /;
 use Scalar::Util qw/ refaddr /;
 use Sub::Quote qw/ quote_sub /;
 use Sub::Util 1.40 qw/ set_subname /;
 use Net::Statsd::Lite::Types -types;
 
 use namespace::autoclean;
+
+# RECOMMEND PREREQ: Ref::Util::XS
 
 our $VERSION = 'v0.4.11';
 
@@ -166,10 +169,13 @@ has _socket => (
 
 =method C<counter>
 
-  $stats->counter( $metric, $value, $rate );
+  $stats->counter( $metric, $value, $opts );
 
 This adds the C<$value> to the counter specified by the C<$metric>
 name.
+
+C<$opts> can be a hash reference with the C<rate> key, or a simple
+scalar with the C<$rate>.
 
 If a C<$rate> is specified and less than 1, then a sampling rate will
 be added. C<$rate> must be between 0 and 1.
@@ -181,23 +187,23 @@ L<Etsy::StatsD> or L<Net::Statsd::Client>.
 
 =method C<increment>
 
-  $stats->increment( $metric, $rate );
+  $stats->increment( $metric, $opts );
 
 This is an alias for
 
-  $stats->counter( $metric, 1, $rate );
+  $stats->counter( $metric, 1, $opts );
 
 =method C<decrement>
 
-  $stats->decrement( $metric, $rate );
+  $stats->decrement( $metric, $opts );
 
 This is an alias for
 
-  $stats->counter( $metric, -1, $rate );
+  $stats->counter( $metric, -1, $opts );
 
 =method C<meter>
 
-  $stats->meter( $metric, $value );
+  $stats->meter( $metric, $value, $opts );
 
 This is a counter that only accepts positive (increasing) values. It
 is appropriate for counters that will never decrease (e.g. the number
@@ -206,7 +212,7 @@ many StatsD daemons.
 
 =method C<gauge>
 
-  $stats->gauge( $metric, $value );
+  $stats->gauge( $metric, $value, $opts );
 
 A gauge can be thought of as a counter that is maintained by the
 client instead of the daemon, where C<$value> is a positive integer.
@@ -218,7 +224,7 @@ by that amount.
 
 =method C<timing>
 
-  $stats->timing( $metric, $value, $rate );
+  $stats->timing( $metric, $value, $opts );
 
 This logs a "timing" in milliseconds, so that statistics about the
 metric can be gathered. The C<$value> must be positive number,
@@ -227,6 +233,9 @@ although the specification recommends that integers be used.
 In actually, any values can be logged, and this is often used as a
 generic histogram for non-timing values (especially since many StatsD
 daemons do not support the L</histogram> metric type).
+
+C<$opts> can be a hash reference with a C<rate> key, or a simple
+scalar with the C<$rate>.
 
 If a C<$rate> is specified and less than 1, then a sampling rate will
 be added. C<$rate> must be between 0 and 1.  Note that sampling
@@ -239,7 +248,7 @@ L<Net::Statsd::Client>.
 
 =method C<histogram>
 
-  $stats->histogram( $metric, $value );
+  $stats->histogram( $metric, $value, $opts );
 
 This logs a value so that statistics about the metric can be
 gathered. The C<$value> must be a positive number, although the
@@ -250,7 +259,7 @@ L</timing> for the same effect.
 
 =method C<set_add>
 
-  $stats->set_add( $metric, $string );
+  $stats->set_add( $metric, $string, $opts );
 
 This adds the the C<$string> to a set, for logging the number of
 unique things, e.g. IP addresses or usernames.
@@ -274,18 +283,22 @@ BEGIN {
         my $type = $PROTOCOL{$name}[1];
         my $rate = $PROTOCOL{$name}[2];
 
-        my $code =
-          defined $rate
-          ? q{ my ($self, $metric, $value, $rate) = @_; }
-          : q{ my ($self, $metric, $value) = @_; };
+        my $code = q{ my ($self, $metric, $value, $opts) = @_; };
+
+        if (defined $rate) {
+            $code .= q[ $opts = { rate => $opts // 1 } unless is_plain_hashref($opts); ] .
+                     q[ my $rate = $opts->{rate}; ]
+        }
+        else {
+            $code .= q[ $opts //= {}; ];
+        }
 
         if (STRICT) {
 
             $code .= $type->inline_assert('$value');
 
             $code .=
-              q/ if (defined $rate) { / . Rate->inline_assert('$rate') . ' }'
-              if defined $rate;
+              Rate->inline_assert('$rate') . ';' if defined $rate;
         }
 
         my $tmpl = $PROTOCOL{$name}[0];
@@ -293,14 +306,14 @@ BEGIN {
         if ( defined $rate ) {
 
             $code .= q/ if ((defined $rate) && ($rate<1)) {
-                     $self->_record( $tmpl . '|@' . $rate, $metric, $value )
+                     $self->_record( $tmpl . '|@' . $rate, $metric, $value, $opts )
                         if rand() <= $rate;
                    } else {
-                     $self->_record( $tmpl, $metric, $value ); } /;
+                     $self->_record( $tmpl, $metric, $value, $opts ); } /;
         }
         else {
 
-            $code .= q{$self->_record( $tmpl, $metric, $value );};
+            $code .= q{$self->_record( $tmpl, $metric, $value, $opts );};
 
         }
 
@@ -323,13 +336,13 @@ BEGIN {
 }
 
 sub increment {
-    my ( $self, $metric, $rate ) = @_;
-    $self->counter( $metric, 1, $rate );
+    my ( $self, $metric, $opts ) = @_;
+    $self->counter( $metric, 1, $opts );
 }
 
 sub decrement {
-    my ( $self, $metric, $rate ) = @_;
-    $self->counter( $metric, -1, $rate );
+    my ( $self, $metric, $opts ) = @_;
+    $self->counter( $metric, -1, $opts );
 }
 
 sub _record {
