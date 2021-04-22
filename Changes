@@ -4,6 +4,9 @@ Revision history for Net-Statsd-Lite
   [Bug Fixes]
   - Update DEMOLISH method to delete buffer afterflush.
 
+  [Tests]
+  - Increase timeout for tests.
+
 v0.5.0    2021-04-22 00:30:57+01:00 Europe/London (TRIAL RELEASE)
   [Enhancements]
   - All measurement methods take an optional `$opts` hashref that can
