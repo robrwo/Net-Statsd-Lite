@@ -1,6 +1,8 @@
 Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
+
+v0.5.1    2021-04-22 16:33:03+01:00 Europe/London (TRIAL RELEASE)
   [Bug Fixes]
   - Update DEMOLISH method to delete buffer afterflush.
 
