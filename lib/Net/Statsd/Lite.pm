@@ -406,6 +406,8 @@ sub DEMOLISH {
     return if $is_global;
 
     $self->flush;
+
+    delete $Buffers{ refaddr $self };
 }
 
 =head1 STRICT MODE
