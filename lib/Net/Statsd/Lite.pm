@@ -13,11 +13,14 @@ use Ref::Util qw/ is_plain_hashref /;
 use Scalar::Util qw/ refaddr /;
 use Sub::Quote qw/ quote_sub /;
 use Sub::Util 1.40 qw/ set_subname /;
-use Net::Statsd::Lite::Types -types;
+use Types::Common::Numeric qw/ IntRange NumRange PositiveInt PositiveOrZeroInt PositiveOrZeroNum /;
+use Types::Common::String qw/ NonEmptySimpleStr SimpleStr /;
+use Types::Standard qw/ Bool Enum InstanceOf StrMatch /;
 
 use namespace::autoclean;
 
 # RECOMMEND PREREQ: Ref::Util::XS
+# RECOMMEND PREREQ: Type::Tiny::XS
 
 our $VERSION = 'v0.5.2';
 
@@ -72,7 +75,7 @@ The host of the statsd daemon. It defaults to C<127.0.0.1>.
 
 has host => (
     is      => 'ro',
-    isa     => Str,
+    isa     => NonEmptySimpleStr,
     default => '127.0.0.1',
 );
 
@@ -85,7 +88,7 @@ C<8125>.
 
 has port => (
     is      => 'ro',
-    isa     => Port,
+    isa     => IntRange[ 0, 65535 ],
     default => 8125,
 );
 
@@ -110,7 +113,7 @@ The prefix to prepend to metric names. It defaults to a blank string.
 
 has prefix => (
     is      => 'ro',
-    isa     => Str,
+    isa     => SimpleStr,
     default => '',
 );
 
@@ -146,7 +149,7 @@ Specifies the maximum buffer size. It defaults to C<512>.
 
 has max_buffer_size => (
     is      => 'ro',
-    isa     => PosInt,
+    isa     => PositiveInt,
     default => 512,
 );
 
@@ -270,12 +273,12 @@ BEGIN {
     my $class = __PACKAGE__;
 
     my %PROTOCOL = (
-        set_add   => [ '|s',  Str, ],
-        counter   => [ '|c',  Int, 1 ],
-        gauge     => [ '|g',  Gauge | PosInt ],
-        histogram => [ '|h',  PosNum ],
-        meter     => [ '|m',  PosInt ],
-        timing    => [ '|ms', PosNum, 1 ],
+        set_add   => [ '|s',  SimpleStr, ],
+        counter   => [ '|c',  PositiveOrZeroInt, 1 ],
+        gauge     => [ '|g',  StrMatch[ qr{\A[\-\+]?[0-9]\z} ] ],
+        histogram => [ '|h',  PositiveOrZeroNum ],
+        meter     => [ '|m',  PositiveOrZeroNum ],
+        timing    => [ '|ms', PositiveOrZeroNum, 1 ],
     );
 
     foreach my $name ( keys %PROTOCOL ) {
@@ -297,8 +300,10 @@ BEGIN {
 
             $code .= $type->inline_assert('$value');
 
-            $code .=
-              Rate->inline_assert('$rate') . ';' if defined $rate;
+            if (defined $rate) {
+                my $range = NumRange[0,1];
+                $code .= $range->inline_assert('$rate') . ';';
+            }
         }
 
         my $tmpl = $PROTOCOL{$name}[0];
