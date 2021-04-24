@@ -15,7 +15,7 @@ use Sub::Quote qw/ quote_sub /;
 use Sub::Util 1.40 qw/ set_subname /;
 use Types::Common::Numeric qw/ IntRange NumRange PositiveInt PositiveOrZeroInt PositiveOrZeroNum /;
 use Types::Common::String qw/ NonEmptySimpleStr SimpleStr /;
-use Types::Standard qw/ Bool Enum InstanceOf StrMatch /;
+use Types::Standard qw/ Bool Enum InstanceOf Int StrMatch /;
 
 use namespace::autoclean;
 
@@ -274,7 +274,7 @@ BEGIN {
 
     my %PROTOCOL = (
         set_add   => [ '|s',  SimpleStr, ],
-        counter   => [ '|c',  PositiveOrZeroInt, 1 ],
+        counter   => [ '|c',  Int, 1 ],
         gauge     => [ '|g',  StrMatch[ qr{\A[\-\+]?[0-9]\z} ] ],
         histogram => [ '|h',  PositiveOrZeroNum ],
         meter     => [ '|m',  PositiveOrZeroNum ],
