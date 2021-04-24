@@ -42,7 +42,7 @@ has autoflush => (
 
 has timeout => (
     is      => 'ro',
-    default => 10,
+    default => 60,
 );
 
 has input => (

@@ -1,6 +1,8 @@
 Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
+  [Tests]
+  - Increase timeout for tests.
 
 v0.5.2    2021-04-24 11:59:55+01:00 Europe/London (TRIAL RELEASE)
   [Enhancements]
