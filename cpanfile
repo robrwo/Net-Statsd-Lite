@@ -15,7 +15,6 @@ requires "Types::Standard" => "0";
 requires "namespace::autoclean" => "0";
 requires "perl" => "v5.10.0";
 requires "strict" => "0";
-requires "warnings" => "0";
 recommends "Ref::Util::XS" => "0";
 recommends "Type::Tiny::XS" => "0";
 
@@ -36,6 +35,7 @@ on 'test' => sub {
   requires "if" => "0";
   requires "lib" => "0";
   requires "utf8" => "0";
+  requires "warnings" => "0";
 };
 
 on 'test' => sub {
