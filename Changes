@@ -1,11 +1,13 @@
 Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
+  [Documentation]
+  - Fixed typos in Changes.
 
 v0.6.0    2021-04-25 23:07:35+01:00 Europe/London
   [Enhancements]
   - All measurement methods take an optional `$opts` hashref that can
-    be used to pass additiona information, such as tags.
+    be used to pass additional information, such as tags.
 
   - Removed the use of custom type library.
 
@@ -45,7 +47,7 @@ v0.5.1    2021-04-22 16:33:03+01:00 Europe/London (TRIAL RELEASE)
 v0.5.0    2021-04-22 00:30:57+01:00 Europe/London (TRIAL RELEASE)
   [Enhancements]
   - All measurement methods take an optional `$opts` hashref that can
-    be used to pass additiona information, such as tags.
+    be used to pass additional information, such as tags.
 
   - Renamed internal `_record` method to `record_metric`.
 
