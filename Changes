@@ -15,7 +15,7 @@ v0.6.0    2021-04-25 23:07:35+01:00 Europe/London
   - Removed the use of custom type library.
 
   [Bug Fixes]
-  - Updated DEMOLISH method to delete buffer afterflush.
+  - Updated DEMOLISH method to delete buffer after flush.
 
   [Incompatabilities]
   - Renamed internal `_record` method to `record_metric`.
