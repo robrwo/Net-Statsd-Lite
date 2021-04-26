@@ -425,8 +425,9 @@ See L<Devel::StrictMode> for more information.
 =head1 TAGGING EXTENSIONS
 
 This class does not support tagging out-of-the box. But tagging can be
-added easily to a subclass, for example, L<DogStatsd|https://www.datadoghq.com/> tagging can be added
-using something like
+added easily to a subclass, for example, L<DogStatsd|https://www.datadoghq.com/> or
+L<CloudWatch|https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-custom-metrics-statsd.html>
+tagging can be added using something like
 
   use Moo 1.000000;
   extends 'Net::Statsd::Lite';
