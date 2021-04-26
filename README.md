@@ -251,6 +251,8 @@ around record_metric => sub {
 
 This module was forked from [Net::Statsd::Tiny](https://metacpan.org/pod/Net::Statsd::Tiny).
 
+[https://github.com/statsd/statsd/blob/master/docs/metric\_types.md](https://github.com/statsd/statsd/blob/master/docs/metric_types.md)
+
 [https://github.com/b/statsd\_spec](https://github.com/b/statsd_spec)
 
 # SOURCE

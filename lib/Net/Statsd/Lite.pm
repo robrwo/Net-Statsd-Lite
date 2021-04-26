@@ -445,6 +445,8 @@ using something like
 
 This module was forked from L<Net::Statsd::Tiny>.
 
+L<https://github.com/statsd/statsd/blob/master/docs/metric_types.md>
+
 L<https://github.com/b/statsd_spec>
 
 =head1 append:AUTHOR
