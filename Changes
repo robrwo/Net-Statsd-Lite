@@ -6,6 +6,9 @@ Revision history for Net-Statsd-Lite
 
   - Removed checks for undefined rates.
 
+  [Bug Fixes]
+  - Fix default sample rate.
+
   [Documentation]
   - Fixed typos in Changes.
 

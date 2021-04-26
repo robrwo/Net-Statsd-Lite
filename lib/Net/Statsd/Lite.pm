@@ -289,8 +289,8 @@ BEGIN {
         my $code = q{ my ($self, $metric, $value, $opts) = @_; };
 
         if (defined $rate) {
-            $code .= q[ $opts = { rate => $opts // 1 } unless is_plain_hashref($opts); ] .
-                     q[ my $rate = $opts->{rate}; ]
+            $code .= q[ $opts = { rate => $opts } unless is_plain_hashref($opts); ] .
+                     q[ my $rate = $opts->{rate} // 1; ]
         }
         else {
             $code .= q[ $opts //= {}; ];
