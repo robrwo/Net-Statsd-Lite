@@ -229,8 +229,9 @@ See [Devel::StrictMode](https://metacpan.org/pod/Devel::StrictMode) for more inf
 # TAGGING EXTENSIONS
 
 This class does not support tagging out-of-the box. But tagging can be
-added easily to a subclass, for example, [DogStatsd](https://www.datadoghq.com/) tagging can be added
-using something like
+added easily to a subclass, for example, [DogStatsd](https://www.datadoghq.com/) or
+[CloudWatch](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-custom-metrics-statsd.html)
+tagging can be added using something like
 
 ```perl
 use Moo 1.000000;
