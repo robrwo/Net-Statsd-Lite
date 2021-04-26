@@ -310,7 +310,7 @@ BEGIN {
 
         if ( defined $rate ) {
 
-            $code .= q/ if ((defined $rate) && ($rate<1)) {
+            $code .= q/ if ($rate<1) {
                      $self->record_metric( $tmpl . '|@' . $rate, $metric, $value, $opts )
                         if rand() <= $rate;
                    } else {
