@@ -18,6 +18,9 @@ Revision history for Net-Statsd-Lite
 
   - Add link to CloudWatch page on StatsD.
 
+  [Tests]
+  - Improved tests for sample rate cases.
+
 v0.6.0    2021-04-25 23:07:35+01:00 Europe/London
   [Enhancements]
   - All measurement methods take an optional `$opts` hashref that can

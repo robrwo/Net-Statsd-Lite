@@ -32,13 +32,13 @@ use warnings;
         autoflush   => 1,
         prefix      => 'foo.',
         input       => [ [qw/ histogram load 123 0.5 /], ],
-        output      => "foo.load:123|h|\@0.500000\n",
+        output      => "foo.load:123|h|\@0.5\n",
     },
     {
         description => "histogram with rate",
         autoflush   => 1,
         prefix      => 'foo.',
         input       => [ [qw/ histogram load 123 /, { rate => 0.7 } ], ],
-        output      => "foo.load:123|h|\@0.700000\n",
+        output      => "foo.load:123|h|\@0.7\n",
     },
 ];
