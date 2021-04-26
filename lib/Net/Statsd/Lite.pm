@@ -276,7 +276,7 @@ BEGIN {
         set_add   => [ '|s',  SimpleStr, ],
         counter   => [ '|c',  Int, 1 ],
         gauge     => [ '|g',  StrMatch[ qr{\A[\-\+]?[0-9]+\z} ] ],
-        histogram => [ '|h',  PositiveOrZeroNum ],
+        histogram => [ '|h',  PositiveOrZeroNum, 1 ],
         meter     => [ '|m',  PositiveOrZeroNum ],
         timing    => [ '|ms', PositiveOrZeroNum, 1 ],
     );
