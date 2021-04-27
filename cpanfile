@@ -26,6 +26,7 @@ on 'test' => sub {
   requires "Module::Metadata" => "0";
   requires "Net::EmptyPort" => "0";
   requires "Socket" => "0";
+  requires "Test::Deep" => "0";
   requires "Test::More" => "0";
   requires "Test::Roo" => "0";
   requires "Test::Roo::DataDriven" => "0";
