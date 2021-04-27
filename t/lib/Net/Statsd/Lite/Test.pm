@@ -63,7 +63,7 @@ test "test client" => sub {
     my $result = $self->test_udp( $self->curry::send_tests );
 
     my $expected = $self->output;
-    if ($expected =~ /\|\@\d/) {
+    if ($expected =~ /\|\@(\d*\.)?\d/) {
         cmp_deeply $result, any( undef, $expected ), 'possibly expected result';
     }
     else {
