@@ -61,6 +61,10 @@ Multiple metrics can be sent in a single UDP packet.
 
 It supports the meter and histogram metric types.
 
+=item *
+
+It can extended to support extensions such as tagging.
+
 =back
 
 Note that the specification requires the measured values to be
