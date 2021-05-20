@@ -53,9 +53,13 @@ It supports the following features:
 
 =over
 
-=item Multiple metrics can be sent in a single UDP packet.
+=item *
 
-=item It supports the meter and histogram metric types.
+Multiple metrics can be sent in a single UDP packet.
+
+=item *
+
+It supports the meter and histogram metric types.
 
 =back
 

@@ -1,6 +1,8 @@
 Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
+  [Documentation]
+  - Fixed POD markup.
 
 v0.6.1    2021-04-27 16:53:51+01:00 Europe/London
   [Enhancements]
