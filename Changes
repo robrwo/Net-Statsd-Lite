@@ -4,6 +4,8 @@ Revision history for Net-Statsd-Lite
   [Documentation]
   - Bumped copyright year.
 
+  - Fixed encoding of links in the README.
+
   [Other]
   - Signed distribution.
 
