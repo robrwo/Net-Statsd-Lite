@@ -1,6 +1,8 @@
 Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
+  [Documentation]
+  - Bumped copyright year.
 
 v0.6.2    2021-05-21 17:00:32+01:00 Europe/London
   [Documentation]
