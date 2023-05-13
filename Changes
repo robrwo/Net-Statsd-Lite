@@ -4,6 +4,9 @@ Revision history for Net-Statsd-Lite
   [Incompatible Changes]
   - Bumped minimum version of Perl to v5.14.
 
+  [Enhancements]
+  - Simplified type imports.
+
   [Documentation]
   - Documented support policy for older Perls.
 

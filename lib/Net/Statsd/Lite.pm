@@ -13,9 +13,9 @@ use Ref::Util qw/ is_plain_hashref /;
 use Scalar::Util qw/ refaddr /;
 use Sub::Quote qw/ quote_sub /;
 use Sub::Util 1.40 qw/ set_subname /;
-use Types::Common::Numeric 1.004000 qw/ IntRange NumRange PositiveInt PositiveOrZeroInt PositiveOrZeroNum /;
-use Types::Common::String qw/ NonEmptySimpleStr SimpleStr /;
-use Types::Standard qw/ Bool Enum InstanceOf Int StrMatch /;
+use Types::Common 2.000000 qw/ Bool Enum InstanceOf Int IntRange NonEmptySimpleStr
+  NumRange PositiveInt PositiveOrZeroInt PositiveOrZeroNum SimpleStr StrMatch
+  /;
 
 use namespace::autoclean;
 
