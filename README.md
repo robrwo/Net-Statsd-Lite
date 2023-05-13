@@ -4,7 +4,7 @@ Net::Statsd::Lite - A lightweight StatsD client that supports multimetric packet
 
 # VERSION
 
-version v0.6.3
+version v0.7.0
 
 # SYNOPSIS
 
