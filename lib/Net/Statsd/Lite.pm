@@ -22,7 +22,7 @@ use namespace::autoclean;
 # RECOMMEND PREREQ: Ref::Util::XS
 # RECOMMEND PREREQ: Type::Tiny::XS
 
-our $VERSION = 'v0.7.1';
+our $VERSION = 'v0.7.2';
 
 =head1 SYNOPSIS
 
