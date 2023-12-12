@@ -38,7 +38,7 @@ our $VERSION = 'v0.7.1';
 
     $stats->increment('this.counter');
 
-    $stats->set_add( $username ) if $username;
+    $stats->set_add( 'this.users', $username ) if $username;
 
     $stats->timing( $run_time * 1000 );
 
