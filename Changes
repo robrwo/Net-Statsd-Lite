@@ -1,6 +1,8 @@
 Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
+  [Enhancements]
+  - Use the meta package for manipulating the namespace.
 
 v0.7.1    2023-12-12 15:27:12+00:00 Europe/London
   [Documentation]

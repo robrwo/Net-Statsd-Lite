@@ -3,6 +3,7 @@ package Net::Statsd::Lite;
 # ABSTRACT: A lightweight StatsD client that supports multimetric packets
 
 use v5.14;
+use meta;
 
 use Moo 1.000000;
 
@@ -12,7 +13,6 @@ use MooX::TypeTiny;
 use Ref::Util qw/ is_plain_hashref /;
 use Scalar::Util qw/ refaddr /;
 use Sub::Quote qw/ quote_sub /;
-use Sub::Util 1.40 qw/ set_subname /;
 use Types::Common 2.000000 qw/ Bool Enum InstanceOf Int IntRange NonEmptySimpleStr
   NumRange PositiveInt PositiveOrZeroInt PositiveOrZeroNum SimpleStr StrMatch
   /;
@@ -338,13 +338,9 @@ BEGIN {
 
     # Alises for other Net::Statsd::Client or Etsy::StatsD
 
-    {
-        no strict 'refs';    ## no critic (ProhibitNoStrict)
-
-        *{"${class}::update"}    = set_subname "update"    => \&counter;
-        *{"${class}::timing_ms"} = set_subname "timing_ms" => \&timing;
-
-    }
+    my $meta = meta::get_package($class);
+    $meta->add_symbol( '&update', \&counter );
+    $meta->add_symbol( '&timing_ms', \&timing );
 
 }
 
