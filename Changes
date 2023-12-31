@@ -4,6 +4,9 @@ Revision history for Net-Statsd-Lite
   [Enhancements]
   - Use the meta package for manipulating the namespace.
 
+  [Tests]
+  - Enabled author tests for strictness.
+
 v0.7.1    2023-12-12 15:27:12+00:00 Europe/London
   [Documentation]
   - Fixed typo in SYNOPSIS for the set_add method.
