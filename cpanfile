@@ -8,10 +8,11 @@ requires "MooX::TypeTiny" => "0";
 requires "Ref::Util" => "0";
 requires "Scalar::Util" => "0";
 requires "Sub::Quote" => "0";
+requires "Sub::Util" => "1.40";
 requires "Types::Common" => "2.000000";
-requires "meta" => "0";
 requires "namespace::autoclean" => "0";
 requires "perl" => "v5.14.0";
+requires "strict" => "0";
 recommends "Ref::Util::XS" => "0";
 recommends "Type::Tiny::XS" => "0";
 
@@ -32,7 +33,6 @@ on 'test' => sub {
   requires "curry" => "0";
   requires "if" => "0";
   requires "lib" => "0";
-  requires "strict" => "0";
   requires "utf8" => "0";
   requires "warnings" => "0";
 };

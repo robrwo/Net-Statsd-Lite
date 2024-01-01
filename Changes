@@ -1,9 +1,6 @@
 Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
-  [Enhancements]
-  - Use the meta package for manipulating the namespace.
-
   [Tests]
   - Enabled author tests for strictness.
 
