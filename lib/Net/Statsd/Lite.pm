@@ -24,7 +24,7 @@ use experimental qw/ signatures /;
 # RECOMMEND PREREQ: Ref::Util::XS
 # RECOMMEND PREREQ: Type::Tiny::XS
 
-our $VERSION = 'v0.8.0';
+our $VERSION = 'v0.8.1';
 
 =head1 SYNOPSIS
 
