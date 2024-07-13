@@ -1,5 +1,5 @@
 ; -*- conf -*-
 
-[TestingAndDebugging::RequireUseStrict]
-equivalent_modules = Test::Roo
-equivalent_modules = Test::Roo::Role
+; Perl::Critic does not know about subroutine signatures
+[Subroutines::ProhibitSubroutinePrototypes]
+severity = 1

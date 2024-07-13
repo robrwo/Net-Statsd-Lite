@@ -1,8 +1,16 @@
 Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
+  [Enhancements]
+  - Code was adapted to use newer syntax features.
+
+  [Incompatible Changes]
+  - Bumped minimum version of Perl to v5.20.
+
   [Documentation]
   - Updated copyright year.
+
+  - Fixed typo in POD.
 
   [Tests]
   - Enabled author tests for strictness.
