@@ -15,14 +15,20 @@ requires "namespace::autoclean" => "0";
 requires "perl" => "v5.20.0";
 requires "strict" => "0";
 recommends "Ref::Util::XS" => "0";
+recommends "Socket" => "2.026";
 recommends "Type::Tiny::XS" => "0";
+
+on 'build' => sub {
+  requires "ExtUtils::MakeMaker" => "7.22";
+  requires "Module::Metadata" => "1.000015";
+};
 
 on 'test' => sub {
   requires "Carp" => "0";
   requires "File::Spec" => "0";
   requires "IO::Select" => "0";
   requires "Module::Load" => "0";
-  requires "Module::Metadata" => "0";
+  requires "Module::Metadata" => "1.000015";
   requires "Net::EmptyPort" => "0";
   requires "Socket" => "0";
   requires "Test::Deep" => "0";
@@ -48,6 +54,7 @@ on 'configure' => sub {
 
 on 'develop' => sub {
   requires "Pod::Coverage::TrustPod" => "0";
+  requires "Test::CVE" => "0.08";
   requires "Test::CleanNamespaces" => "0.15";
   requires "Test::DistManifest" => "0";
   requires "Test::EOF" => "0";

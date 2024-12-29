@@ -22,6 +22,7 @@ use namespace::autoclean;
 use experimental qw/ signatures /;
 
 # RECOMMEND PREREQ: Ref::Util::XS
+# RECOMMEND PREREQ: Socket 2.026
 # RECOMMEND PREREQ: Type::Tiny::XS
 
 our $VERSION = 'v0.8.1';
