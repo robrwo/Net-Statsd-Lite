@@ -12,6 +12,8 @@ Revision history for Net-Statsd-Lite
 
   - Removed INSTALL guide.
 
+  - Added doap.xml.
+
   [Tests]
   - Added more author tests.
 
