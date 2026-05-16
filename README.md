@@ -53,6 +53,8 @@ Changes for version v0.10.0 (2026-05-16)
     - Added the secure\_set\_add method for logging sensitive information.
 - Documentation
     - Updated the SECURITY CONSIDERATIONS section.
+- Tests
+    - Removed duplicate author test.
 
 See the `Changes` file for more details.
 
