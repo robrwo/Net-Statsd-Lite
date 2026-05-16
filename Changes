@@ -10,6 +10,8 @@ Revision history for Net-Statsd-Lite
 
   - Fixed SOURCE link in README.
 
+  - Removed INSTALL guide.
+
   [Tests]
   - Added more author tests.
 
