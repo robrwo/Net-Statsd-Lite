@@ -47,6 +47,8 @@ Changes for version v0.9.1 (2026-05-16)
 
 - Enhancements
     - Metrics names with any characters below ASCII 32 will be blocked.
+- Documentation
+    - Updated the SECURITY CONSIDERATIONS section.
 
 See the `Changes` file for more details.
 
@@ -107,6 +109,8 @@ For more information, see [How to install CPAN modules](https://www.cpan.org/mod
 # SECURITY CONSIDERATIONS
 
 When using the ["set\_add"](#set_add) method, be wary of exposing sensitive information like IP addresses, usernames, email addresses or even session ids over insecure channels.
+
+When generating metric names based on untrusted sources (such as HTTP requests), ensure that the metrics contain only printable characters and do not contain colons (":") or pipes ("|"), since these are used by the statsd protocol.
 
 # SUPPORT
 

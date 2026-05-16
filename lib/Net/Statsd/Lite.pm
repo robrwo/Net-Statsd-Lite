@@ -454,6 +454,8 @@ tagging can be added using something like
 
 When using the L</set_add> method, be wary of exposing sensitive information like IP addresses, usernames, email addresses or even session ids over insecure channels.
 
+When generating metric names based on untrusted sources (such as HTTP requests), ensure that the metrics contain only printable characters and do not contain colons (":") or pipes ("|"), since these are used by the statsd protocol.
+
 =head1 SEE ALSO
 
 This module was forked from L<Net::Statsd::Tiny>.
