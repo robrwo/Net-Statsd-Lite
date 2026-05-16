@@ -53,6 +53,7 @@ Changes for version v0.8.1 (2026-05-16)
     - Removed INSTALL guide.
     - Added doap.xml.
     - Generate README with the UsefulReadme plugin.
+    - Improved Pod::Weaver configuration and reorganised POD sections.
 - Tests
     - Added more author tests.
     - Moved author tests to xt directory.
@@ -115,7 +116,14 @@ dzil install --install-command="cpan ."
 
 For more information, see [How to install CPAN modules](https://www.cpan.org/modules/INSTALL.html).
 
-# BUGS
+# SUPPORT
+
+Only the latest version of this module will be supported.
+
+This module requires Perl v5.20 or later.
+Future releases may only support Perl versions released in the last ten (10) years.
+
+## Reporting Bugs and Submitting Feature Requests
 
 Please report any bugs or feature requests on the bugtracker website
 [https://github.com/robrwo/Net-Statsd-Lite/issues](https://github.com/robrwo/Net-Statsd-Lite/issues)

@@ -27,6 +27,12 @@ use experimental qw/ signatures /;
 
 our $VERSION = 'v0.8.1';
 
+=begin :prelude
+
+=for stopwords
+
+=end :prelude
+
 =head1 SYNOPSIS
 
     use Net::Statsd::Lite;
@@ -76,9 +82,7 @@ integers no larger than 64-bits, but ideally 53-bits.
 The current implementation expects values to be integers, except where
 specified. But it otherwise does not enforce maximum/minimum values.
 
-=head1 ATTRIBUTES
-
-=attribute C<host>
+=attr C<host>
 
 The host of the statsd daemon. It defaults to C<127.0.0.1>.
 
@@ -90,7 +94,7 @@ has host => (
     default => '127.0.0.1',
 );
 
-=attribute C<port>
+=attr C<port>
 
 The port that the statsd daemon is listening on. It defaults to
 C<8125>.
@@ -103,7 +107,7 @@ has port => (
     default => 8125,
 );
 
-=attribute C<proto>
+=attr C<proto>
 
 The network protocol that the statsd daemon is using. It defaults to
 C<udp>.
@@ -116,7 +120,7 @@ has proto => (
     default => 'udp',
 );
 
-=attribute C<prefix>
+=attr C<prefix>
 
 The prefix to prepend to metric names. It defaults to a blank string.
 
@@ -128,7 +132,7 @@ has prefix => (
     default => '',
 );
 
-=attribute C<autoflush>
+=attr C<autoflush>
 
 A flag indicating whether metrics will be send immediately. It
 defaults to true.
@@ -152,7 +156,7 @@ has autoflush => (
 
 my %Buffers;
 
-=attribute C<max_buffer_size>
+=attr C<max_buffer_size>
 
 Specifies the maximum buffer size. It defaults to C<512>.
 
@@ -177,8 +181,6 @@ has _socket => (
     },
     handles => { _send => 'send' },
 );
-
-=head1 METHODS
 
 =method C<counter>
 
@@ -444,12 +446,6 @@ tagging can be added using something like
       $self->$next( $suffix, $metric, $value, $opts );
   };
 
-=head1 SUPPORT FOR OLDER PERL VERSIONS
-
-Since v0.8.0, the this module requires Perl v5.20 or later.
-
-Future releases may only support Perl versions released in the last ten years.
-
 =head1 SEE ALSO
 
 This module was forked from L<Net::Statsd::Tiny>.
@@ -463,7 +459,16 @@ L<https://github.com/b/statsd_spec>
 The initial development of this module was sponsored by Science Photo
 Library L<https://www.sciencephoto.com>.
 
-=head1 append:BUGS
+=head1 prepend:SUPPORT
+
+Only the latest version of this module will be supported.
+
+This module requires Perl v5.20 or later.
+Future releases may only support Perl versions released in the last ten (10) years.
+
+=head2 Reporting Bugs and Submitting Feature Requests
+
+=head1 append:SUPPORT
 
 =head2 Reporting Security Vulnerabilities
 
