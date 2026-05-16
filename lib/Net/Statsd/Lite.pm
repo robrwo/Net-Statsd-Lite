@@ -377,7 +377,7 @@ See the discussion of tagging extensions below.
 sub record_metric( $self, $suffix, $metric, $value, $ ) {
 
     croak "malformed suffix" if $suffix =~ /[\n]/;
-    croak "malformed metric" if $metric =~ /[\n:|]/;
+    croak "malformed metric" if $metric =~ /[\N{U+00}-\N{U+1f}:|]/;
 
     my $data = $self->prefix . $metric . ':' . $value . $suffix . "\n";
 
