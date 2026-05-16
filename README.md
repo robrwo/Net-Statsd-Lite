@@ -43,7 +43,7 @@ specified. But it otherwise does not enforce maximum/minimum values.
 
 # RECENT CHANGES
 
-Changes for version v0.8.1 (2026-05-16)
+Changes for version v0.9.0 (2026-05-16)
 
 - Security
     - Metrics names are now validated to ensure they do not contain newlines, ":" or "|" characters that might allow metric injection. CVE-2026-46719
