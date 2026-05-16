@@ -1,12 +1,14 @@
 Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
+  [Documentation]
+  - Added missing GitHub reference to Changes.
 
 v0.10.0   2026-05-16 10:29:04+01:00 Europe/London
   [Enhancements]
   - Metrics names with any characters below ASCII 32 will be blocked.
 
-  - Added the secure_set_add method for logging sensitive information.
+  - Added the secure_set_add method for logging sensitive information. GH#4
 
   [Documentation]
   - Updated the SECURITY CONSIDERATIONS section.

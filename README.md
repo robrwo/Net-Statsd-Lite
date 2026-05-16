@@ -46,15 +46,10 @@ specified. But it otherwise does not enforce maximum/minimum values.
 
 # RECENT CHANGES
 
-Changes for version v0.10.0 (2026-05-16)
+Changes for version v0.10.1 (2026-05-16)
 
-- Enhancements
-    - Metrics names with any characters below ASCII 32 will be blocked.
-    - Added the secure\_set\_add method for logging sensitive information.
 - Documentation
-    - Updated the SECURITY CONSIDERATIONS section.
-- Tests
-    - Removed duplicate author test.
+    - Added missing GitHub reference to Changes.
 
 See the `Changes` file for more details.
 
