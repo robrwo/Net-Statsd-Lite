@@ -13,6 +13,9 @@ Revision history for Net-Statsd-Lite
   [Tests]
   - Added more author tests.
 
+  [Toolchain]
+  - Stopped signing distributions with Module::Signature.
+
 v0.8.0    2024-07-13 13:12:43+01:00 Europe/London
   [Enhancements]
   - Code was adapted to use newer syntax features.
