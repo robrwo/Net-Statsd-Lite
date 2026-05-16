@@ -48,7 +48,7 @@ our $VERSION = 'v0.9.1';
 
     $stats->increment('this.counter');
 
-    $stats->set_add( 'this.users', $username ) if $username;
+    $stats->set_add( 'this.users', $user->id ) if $user;
 
     $stats->timing( $run_time * 1000 );
 
@@ -278,7 +278,9 @@ L</timing> for the same effect.
   $stats->set_add( $metric, $string, $opts );
 
 This adds the the C<$string> to a set, for logging the number of
-unique things, e.g. IP addresses or usernames.
+unique things, e.g. IP addresses or user ids.
+
+However, see the L</SECURITY CONSIDERATIONS> section about exposing sensitive information.
 
 =cut
 

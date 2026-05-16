@@ -17,7 +17,7 @@ my $stats = Net::Statsd::Lite->new(
 
 $stats->increment('this.counter');
 
-$stats->set_add( 'this.users', $username ) if $username;
+$stats->set_add( 'this.users', $user->id ) if $user;
 
 $stats->timing( $run_time * 1000 );
 
@@ -49,6 +49,7 @@ Changes for version v0.9.1 (2026-05-16)
     - Metrics names with any characters below ASCII 32 will be blocked.
 - Documentation
     - Updated the SECURITY CONSIDERATIONS section.
+    - Refer to SECURITY CONSIDERATIONS in the set\_add method.
 
 See the `Changes` file for more details.
 
