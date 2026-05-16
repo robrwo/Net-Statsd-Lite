@@ -58,6 +58,7 @@ Changes for version v0.8.1 (2026-05-16)
     - Moved author tests to xt directory.
 - Toolchain
     - Stopped signing distributions with Module::Signature.
+    - Updated Dist::Zilla configuration.
 
 See the `Changes` file for more details.
 
