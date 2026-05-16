@@ -266,7 +266,7 @@ This module was forked from [Net::Statsd::Tiny](https://metacpan.org/pod/Net%3A%
 # SOURCE
 
 The development version is on github at [https://github.com/robrwo/Net-Statsd-Lite](https://github.com/robrwo/Net-Statsd-Lite)
-and may be cloned from [git://github.com/robrwo/Net-Statsd-Lite.git](git://github.com/robrwo/Net-Statsd-Lite.git)
+and may be cloned from [https://github.com/robrwo/Net-Statsd-Lite.git](https://github.com/robrwo/Net-Statsd-Lite.git)
 
 # BUGS
 
