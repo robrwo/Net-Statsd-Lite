@@ -54,6 +54,7 @@ Changes for version v0.8.1 (2026-05-16)
     - Added doap.xml.
     - Generate README with the UsefulReadme plugin.
     - Improved Pod::Weaver configuration and reorganised POD sections.
+    - Added a SECURITY CONSIDERATIONS section.
 - Tests
     - Added more author tests.
     - Moved author tests to xt directory.
@@ -115,6 +116,10 @@ dzil install --install-command="cpan ."
 ```
 
 For more information, see [How to install CPAN modules](https://www.cpan.org/modules/INSTALL.html).
+
+# SECURITY CONSIDERATIONS
+
+When using the ["set\_add"](#set_add) method, be wary of expositing sensitive information like IP addresses, usernames, email addresses or even session ids over insecure channels.
 
 # SUPPORT
 

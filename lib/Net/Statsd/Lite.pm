@@ -446,6 +446,10 @@ tagging can be added using something like
       $self->$next( $suffix, $metric, $value, $opts );
   };
 
+=head1 SECURITY CONSIDERATIONS
+
+When using the L</set_add> method, be wary of expositing sensitive information like IP addresses, usernames, email addresses or even session ids over insecure channels.
+
 =head1 SEE ALSO
 
 This module was forked from L<Net::Statsd::Tiny>.

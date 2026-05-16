@@ -18,6 +18,8 @@ Revision history for Net-Statsd-Lite
 
   - Improved Pod::Weaver configuration and reorganised POD sections.
 
+  - Added a SECURITY CONSIDERATIONS section.
+
   [Tests]
   - Added more author tests.
 
