@@ -14,6 +14,8 @@ Revision history for Net-Statsd-Lite
 
   - Added doap.xml.
 
+  - Generate README with the UsefulReadme plugin.
+
   [Tests]
   - Added more author tests.
 
