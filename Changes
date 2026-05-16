@@ -17,6 +17,8 @@ Revision history for Net-Statsd-Lite
   [Tests]
   - Added more author tests.
 
+  - Moved author tests to xt directory.
+
   [Toolchain]
   - Stopped signing distributions with Module::Signature.
 
