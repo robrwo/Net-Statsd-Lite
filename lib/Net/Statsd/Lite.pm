@@ -30,7 +30,7 @@ our $VERSION = 'v0.9.0';
 
 =begin :prelude
 
-=for stopwords
+=for stopwords CloudWatch DogStatsd UDP multimetric compatability StatsD statsd
 
 =end :prelude
 
@@ -452,7 +452,7 @@ tagging can be added using something like
 
 =head1 SECURITY CONSIDERATIONS
 
-When using the L</set_add> method, be wary of expositing sensitive information like IP addresses, usernames, email addresses or even session ids over insecure channels.
+When using the L</set_add> method, be wary of exposing sensitive information like IP addresses, usernames, email addresses or even session ids over insecure channels.
 
 =head1 SEE ALSO
 

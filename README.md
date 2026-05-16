@@ -122,7 +122,7 @@ For more information, see [How to install CPAN modules](https://www.cpan.org/mod
 
 # SECURITY CONSIDERATIONS
 
-When using the ["set\_add"](#set_add) method, be wary of expositing sensitive information like IP addresses, usernames, email addresses or even session ids over insecure channels.
+When using the ["set\_add"](#set_add) method, be wary of exposing sensitive information like IP addresses, usernames, email addresses or even session ids over insecure channels.
 
 # SUPPORT
 
