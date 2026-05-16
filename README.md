@@ -46,7 +46,7 @@ specified. But it otherwise does not enforce maximum/minimum values.
 
 # RECENT CHANGES
 
-Changes for version v0.9.1 (2026-05-16)
+Changes for version v0.10.0 (2026-05-16)
 
 - Enhancements
     - Metrics names with any characters below ASCII 32 will be blocked.
