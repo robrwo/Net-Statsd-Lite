@@ -410,7 +410,7 @@ sub decrement( $self, $metric, $opts = undef ) {
 }
 
 sub secure_set_add( $self, $metric, $value, $opts = undef ) {
-    $self->set_add( $metric, hmac_b64u( $self->secure_set_hash, $self->secure_set_key, $value ) );
+    $self->set_add( $metric, hmac_b64u( $self->secure_set_hash, $self->secure_set_key, $value ), $opts );
 }
 
 =method record_metric
