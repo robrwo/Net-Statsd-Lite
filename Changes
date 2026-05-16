@@ -1,6 +1,10 @@
 Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
+  [Security]
+  - Metrics names are now validated to ensure they do not contain newlines, ":" or "|" characters that
+    might allow metric injection. CVE-2026-46719
+
   [Documentation]
   - Added a security policy.
 

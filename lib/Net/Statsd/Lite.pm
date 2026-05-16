@@ -6,6 +6,7 @@ use v5.20;
 
 use Moo 1.000000;
 
+use Carp qw/ croak /;
 use Devel::StrictMode;
 use IO::Socket 1.18 ();
 use MooX::TypeTiny;
@@ -176,7 +177,7 @@ has _socket => (
             PeerAddr => $self->host,
             PeerPort => $self->port,
             Proto    => $self->proto,
-        ) or die "Failed to initialize socket: $!";
+        ) or croak "Failed to initialize socket: $!";
         return $sock;
     },
     handles => { _send => 'send' },
@@ -374,6 +375,9 @@ See the discussion of tagging extensions below.
 =cut
 
 sub record_metric( $self, $suffix, $metric, $value, $ ) {
+
+    croak "malformed suffix" if $suffix =~ /[\n]/;
+    croak "malformed metric" if $metric =~ /[\n:|]/;
 
     my $data = $self->prefix . $metric . ':' . $value . $suffix . "\n";
 

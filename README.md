@@ -45,6 +45,8 @@ specified. But it otherwise does not enforce maximum/minimum values.
 
 Changes for version v0.8.1 (2026-05-16)
 
+- Security
+    - Metrics names are now validated to ensure they do not contain newlines, ":" or "|" characters that might allow metric injection. CVE-2026-46719
 - Documentation
     - Added a security policy.
     - Updated copyright year.
@@ -68,6 +70,7 @@ See the `Changes` file for more details.
 
 This module lists the following modules as runtime dependencies:
 
+- [Carp](https://metacpan.org/pod/Carp)
 - [Devel::StrictMode](https://metacpan.org/pod/Devel%3A%3AStrictMode)
 - [IO::Socket](https://metacpan.org/pod/IO%3A%3ASocket) version 1.18 or later
 - [Moo](https://metacpan.org/pod/Moo) version 1.000000 or later
