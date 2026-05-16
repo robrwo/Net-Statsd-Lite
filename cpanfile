@@ -54,6 +54,7 @@ on 'configure' => sub {
 
 on 'develop' => sub {
   requires "Pod::Coverage::TrustPod" => "0";
+  requires "Software::Security::Policy::Individual" => "0.10";
   requires "Test::CVE" => "0.08";
   requires "Test::CleanNamespaces" => "0.15";
   requires "Test::DistManifest" => "0";
