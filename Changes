@@ -1,6 +1,8 @@
 Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
+
+v0.10.0   2026-05-16 10:29:04+01:00 Europe/London
   [Enhancements]
   - Metrics names with any characters below ASCII 32 will be blocked.
 
