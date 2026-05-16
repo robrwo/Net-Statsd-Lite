@@ -4,10 +4,10 @@ Revision history for Net-Statsd-Lite
   [Enhancements]
   - Metrics names with any characters below ASCII 32 will be blocked.
 
+  - Added the secure_set_add method for logging sensitive information.
+
   [Documentation]
   - Updated the SECURITY CONSIDERATIONS section.
-
-  - Refer to SECURITY CONSIDERATIONS in the set_add method.
 
 v0.9.0    2026-05-16 02:10:00+01:00 Europe/London
   [Security]

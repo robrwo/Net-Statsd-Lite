@@ -7,6 +7,8 @@ use v5.20;
 use Moo 1.000000;
 
 use Carp qw/ croak /;
+use Crypt::PRNG qw/ random_bytes /;
+use Crypt::Mac::HMAC 0.089 qw/ hmac_b64u /;
 use Devel::StrictMode;
 use IO::Socket 1.18 ();
 use MooX::TypeTiny;
@@ -15,7 +17,7 @@ use Scalar::Util qw/ refaddr /;
 use Sub::Quote qw/ quote_sub /;
 use Sub::Util 1.40 qw/ set_subname /;
 use Types::Common 2.000000 qw/ Bool Enum InstanceOf Int IntRange NonEmptySimpleStr
-  NumRange PositiveInt PositiveOrZeroInt PositiveOrZeroNum SimpleStr StrMatch
+  NumRange PositiveInt PositiveOrZeroInt PositiveOrZeroNum SimpleStr StrMatch Value
   /;
 
 use namespace::autoclean;
@@ -42,6 +44,7 @@ our $VERSION = 'v0.9.1';
       prefix          => 'myapp.',
       autoflush       => 0,
       max_buffer_size => 8192,
+      secure_set_key  => 'MySecretKey!',
     );
 
     ...
@@ -49,6 +52,8 @@ our $VERSION = 'v0.9.1';
     $stats->increment('this.counter');
 
     $stats->set_add( 'this.users', $user->id ) if $user;
+
+    $stats->secure_set_add( 'this.session', $session->id );
 
     $stats->timing( $run_time * 1000 );
 
@@ -183,6 +188,37 @@ has _socket => (
     handles => { _send => 'send' },
 );
 
+=attr secure_set_key
+
+This is the key used by the L</secure_set_add> method.
+It is initialised with random bytes on construction.
+
+Note that if this is being used in a multi-process environment, then ensure that it is initialised before forking, or that the constructor specifies a secret key.
+If this is being used in a multi-host environment, then all hosts should use the same secret key.
+Otherwise the statistics for the sets may be multiplied by the number of workers and hosts.
+
+=cut
+
+has secure_set_key => (
+    is        => 'ro',
+    isa       => Value,
+    builder   => sub($self) { return random_bytes(20) },
+);
+
+=attr secure_set_hash
+
+This is the digest algorithm used by the L</secure_set_add> method.  It defaults to "SHA1".
+
+See L<Crypt::Mac::HMAC> for a list of hash algorithms.
+
+=cut
+
+has secure_set_hash => (
+    is        => 'lazy',
+    isa       => NonEmptySimpleStr,
+    default   => 'SHA1',
+);
+
 =method C<counter>
 
   $stats->counter( $metric, $value, $opts );
@@ -280,7 +316,17 @@ L</timing> for the same effect.
 This adds the the C<$string> to a set, for logging the number of
 unique things, e.g. IP addresses or user ids.
 
-However, see the L</SECURITY CONSIDERATIONS> section about exposing sensitive information.
+Use L</secure_set_add> for logging sensitive information.
+
+=method C<secure_set_add>
+
+  $stats->secure_set_add( $metric, $string, $opts );
+
+This is a variant of L</set_add> that encrypts the value before adding it.
+
+This allows logging of sensitive information such as session ids or email addresses.
+
+Note that if the L</secure_set_key> is inconsistent across processes or even hosts, then the statistics will be inaccurate.
 
 =cut
 
@@ -361,6 +407,10 @@ sub increment( $self, $metric, $opts = undef ) {
 
 sub decrement( $self, $metric, $opts = undef ) {
     $self->counter( $metric, -1, $opts );
+}
+
+sub secure_set_add( $self, $metric, $value, $opts = undef ) {
+    $self->set_add( $metric, hmac_b64u( $self->secure_set_hash, $self->secure_set_key, $value ) );
 }
 
 =method record_metric
@@ -454,7 +504,7 @@ tagging can be added using something like
 
 =head1 SECURITY CONSIDERATIONS
 
-When using the L</set_add> method, be wary of exposing sensitive information like IP addresses, usernames, email addresses or even session ids over insecure channels.
+When using the L</set_add> method, be wary of exposing sensitive information like IP addresses, usernames, email addresses or even session ids over insecure channels.  setUse the L</secure_set_add> method instead.
 
 When generating metric names based on untrusted sources (such as HTTP requests), ensure that the metrics contain only printable characters and do not contain colons (":") or pipes ("|"), since these are used by the statsd protocol.
 

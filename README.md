@@ -11,6 +11,7 @@ my $stats = Net::Statsd::Lite->new(
   prefix          => 'myapp.',
   autoflush       => 0,
   max_buffer_size => 8192,
+  secure_set_key  => 'MySecretKey!',
 );
 
 ...
@@ -18,6 +19,8 @@ my $stats = Net::Statsd::Lite->new(
 $stats->increment('this.counter');
 
 $stats->set_add( 'this.users', $user->id ) if $user;
+
+$stats->secure_set_add( 'this.session', $session->id );
 
 $stats->timing( $run_time * 1000 );
 
@@ -47,9 +50,9 @@ Changes for version v0.9.1 (2026-05-16)
 
 - Enhancements
     - Metrics names with any characters below ASCII 32 will be blocked.
+    - Added the secure\_set\_add method for logging sensitive information.
 - Documentation
     - Updated the SECURITY CONSIDERATIONS section.
-    - Refer to SECURITY CONSIDERATIONS in the set\_add method.
 
 See the `Changes` file for more details.
 
@@ -58,6 +61,8 @@ See the `Changes` file for more details.
 This module lists the following modules as runtime dependencies:
 
 - [Carp](https://metacpan.org/pod/Carp)
+- [Crypt::Mac::HMAC](https://metacpan.org/pod/Crypt%3A%3AMac%3A%3AHMAC) version 0.089 or later
+- [Crypt::PRNG](https://metacpan.org/pod/Crypt%3A%3APRNG)
 - [Devel::StrictMode](https://metacpan.org/pod/Devel%3A%3AStrictMode)
 - [IO::Socket](https://metacpan.org/pod/IO%3A%3ASocket) version 1.18 or later
 - [Moo](https://metacpan.org/pod/Moo) version 1.000000 or later
@@ -109,7 +114,7 @@ For more information, see [How to install CPAN modules](https://www.cpan.org/mod
 
 # SECURITY CONSIDERATIONS
 
-When using the ["set\_add"](#set_add) method, be wary of exposing sensitive information like IP addresses, usernames, email addresses or even session ids over insecure channels.
+When using the ["set\_add"](#set_add) method, be wary of exposing sensitive information like IP addresses, usernames, email addresses or even session ids over insecure channels.  setUse the ["secure\_set\_add"](#secure_set_add) method instead.
 
 When generating metric names based on untrusted sources (such as HTTP requests), ensure that the metrics contain only printable characters and do not contain colons (":") or pipes ("|"), since these are used by the statsd protocol.
 

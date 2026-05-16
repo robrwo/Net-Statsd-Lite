@@ -57,6 +57,11 @@ has output => (
     required => 1,
 );
 
+has secure_set_key => (
+    is      => 'ro',
+    default => 'notagoodsecretbutconsistentfortesting',
+);
+
 test "test client" => sub {
     my ($self) = @_;
 
@@ -129,6 +134,7 @@ sub test_udp {
             prefix          => $self->prefix,
             max_buffer_size => $self->max_buffer_size,
             autoflush       => $self->autoflush,
+            secure_set_key  => $self->secure_set_key,
         );
 
         sleep 1;    # wait for server to start
