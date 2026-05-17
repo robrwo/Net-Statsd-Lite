@@ -430,6 +430,7 @@ sub record_metric( $self, $suffix, $metric, $value, $ ) {
 
     croak "malformed suffix" if $suffix =~ /[\n]/;
     croak "malformed metric" if $metric =~ /[\N{U+00}-\N{U+1f}:|]/;
+    croak "malformed value"  if $value  =~ /[\N{U+00}-\N{U+1f}:|]/;
 
     my $data = $self->prefix . $metric . ':' . $value . $suffix . "\n";
 

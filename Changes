@@ -1,8 +1,14 @@
 Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
+  [Security]
+  - Values are now validated to ensure they do not contain characters below ASCII 32 (including newlines),
+    colon (":") or pipe ("|") characters that might allow metric injection. CVE-2026-8788
+
   [Documentation]
   - Added missing GitHub reference to Changes.
+
+  - Revised wording in Changes.
 
 v0.10.0   2026-05-16 10:29:04+01:00 Europe/London
   [Enhancements]
@@ -18,7 +24,7 @@ v0.10.0   2026-05-16 10:29:04+01:00 Europe/London
 
 v0.9.0    2026-05-16 02:10:00+01:00 Europe/London
   [Security]
-  - Metrics names are now validated to ensure they do not contain newlines, ":" or "|" characters that
+  - Metrics names are now validated to ensure they do not contain newlines, colon (":") or pipe ("|") characters that
     might allow metric injection. CVE-2026-46719
 
   [Documentation]

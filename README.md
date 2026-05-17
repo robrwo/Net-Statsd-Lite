@@ -46,10 +46,13 @@ specified. But it otherwise does not enforce maximum/minimum values.
 
 # RECENT CHANGES
 
-Changes for version v0.10.1 (2026-05-16)
+Changes for version v0.10.1 (2026-05-17)
 
+- Security
+    - Values are now validated to ensure they do not contain characters below ASCII 32 (including newlines), colon (":") or pipe ("|") characters that might allow metric injection. CVE-2026-8788
 - Documentation
     - Added missing GitHub reference to Changes.
+    - Revised wording in Changes.
 
 See the `Changes` file for more details.
 
