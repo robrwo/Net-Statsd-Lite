@@ -28,7 +28,7 @@ use experimental qw/ signatures /;
 # RECOMMEND PREREQ: Socket 2.026
 # RECOMMEND PREREQ: Type::Tiny::XS
 
-our $VERSION = 'v0.10.1';
+our $VERSION = 'v0.10.2';
 
 =begin :prelude
 
