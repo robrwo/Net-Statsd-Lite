@@ -65,7 +65,7 @@ This module lists the following modules as runtime dependencies:
 
 - [Carp](https://metacpan.org/pod/Carp)
 - [Devel::StrictMode](https://metacpan.org/pod/Devel%3A%3AStrictMode)
-- [Digest::SHA](https://metacpan.org/pod/Digest%3A%3ASHA)
+- [Digest::SHA](https://metacpan.org/pod/Digest%3A%3ASHA) version 5.96 or later
 - [IO::Socket](https://metacpan.org/pod/IO%3A%3ASocket) version 1.18 or later
 - [Moo](https://metacpan.org/pod/Moo) version 1.000000 or later
 - [MooX::TypeTiny](https://metacpan.org/pod/MooX%3A%3ATypeTiny)

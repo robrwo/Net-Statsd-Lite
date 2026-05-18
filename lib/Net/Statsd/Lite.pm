@@ -8,7 +8,7 @@ use Moo 1.000000;
 
 use Carp qw/ croak /;
 use Devel::StrictMode;
-use Digest::SHA qw/ hmac_sha256_base64 /;
+use Digest::SHA 5.96 qw/ hmac_sha256_base64 /;
 use IO::Socket 1.18 ();
 use MooX::TypeTiny;
 use Ref::Util qw/ is_plain_hashref /;

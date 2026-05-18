@@ -3,7 +3,7 @@
 
 requires "Carp" => "0";
 requires "Devel::StrictMode" => "0";
-requires "Digest::SHA" => "0";
+requires "Digest::SHA" => "5.96";
 requires "IO::Socket" => "1.18";
 requires "Moo" => "1.000000";
 requires "MooX::TypeTiny" => "0";
