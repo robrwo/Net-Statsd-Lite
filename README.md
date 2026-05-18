@@ -37,6 +37,7 @@ It supports the following features:
 - Multiple metrics can be sent in a single UDP packet.
 - It supports the meter and histogram metric types.
 - It can extended to support extensions such as tagging.
+- It supports a ["secure\_set\_key"](#secure_set_key) method for logging sensitive data.
 
 Note that the specification requires the measured values to be
 integers no larger than 64-bits, but ideally 53-bits.
@@ -50,6 +51,7 @@ Changes for version v0.10.2 (2026-05-18)
 
 - Documentation
     - Removed "lightweight" from the abstract, because this class is not as light as it used to be. GH#3
+    - Updated documentation.
 
 See the `Changes` file for more details.
 

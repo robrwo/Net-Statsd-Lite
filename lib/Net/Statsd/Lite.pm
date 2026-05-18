@@ -61,7 +61,7 @@ our $VERSION = 'v0.10.2';
 
 =head1 DESCRIPTION
 
-This is a small StatsD client that supports the
+This is a StatsD client that supports the
 L<StatsD Metrics Export Specification v0.1|https://github.com/b/statsd_spec>.
 
 It supports the following features:
@@ -79,6 +79,10 @@ It supports the meter and histogram metric types.
 =item *
 
 It can extended to support extensions such as tagging.
+
+=item *
+
+It supports a L</secure_set_key> method for logging sensitive data.
 
 =back
 
