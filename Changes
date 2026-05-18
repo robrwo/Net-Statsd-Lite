@@ -1,6 +1,8 @@
 Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
+
+v0.10.2   2026-05-18 19:57:09+01:00 Europe/London
   [Enhancements]
   - Use core Digest::SHA instead of CryptX.  This removes the secure_set_hash option.
 
