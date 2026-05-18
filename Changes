@@ -1,6 +1,8 @@
 Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
+  [Documentation]
+  - Removed "lightweight" from the abstract, because this class is not as light as it used to be. GH#3
 
 v0.10.1   2026-05-17 18:06:10+01:00 Europe/London
   [Security]

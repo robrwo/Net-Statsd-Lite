@@ -7,7 +7,7 @@
   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   >
   <name>Net-Statsd-Lite</name>
-  <shortdesc>A lightweight StatsD client that supports multimetric packets</shortdesc>
+  <shortdesc>A StatsD client that supports multimetric packets</shortdesc>
   <category rdfs:label="client" />
   <category rdfs:label="StatsD" />
   <category rdfs:label="metrics" />

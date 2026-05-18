@@ -1,6 +1,6 @@
 # NAME
 
-Net::Statsd::Lite - A lightweight StatsD client that supports multimetric packets
+Net::Statsd::Lite - A StatsD client that supports multimetric packets
 
 # SYNOPSIS
 
@@ -29,7 +29,7 @@ $stats->flush;
 
 # DESCRIPTION
 
-This is a small StatsD client that supports the
+This is a StatsD client that supports the
 [StatsD Metrics Export Specification v0.1](https://github.com/b/statsd_spec).
 
 It supports the following features:
@@ -46,13 +46,10 @@ specified. But it otherwise does not enforce maximum/minimum values.
 
 # RECENT CHANGES
 
-Changes for version v0.10.1 (2026-05-17)
+Changes for version v0.10.2 (2026-05-18)
 
-- Security
-    - Values are now validated to ensure they do not contain characters below ASCII 32 (including newlines), colon (":") or pipe ("|") characters that might allow metric injection. CVE-2026-8788
 - Documentation
-    - Added missing GitHub reference to Changes.
-    - Revised wording in Changes.
+    - Removed "lightweight" from the abstract, because this class is not as light as it used to be. GH#3
 
 See the `Changes` file for more details.
 

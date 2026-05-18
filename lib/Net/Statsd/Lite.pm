@@ -1,6 +1,6 @@
 package Net::Statsd::Lite;
 
-# ABSTRACT: A lightweight StatsD client that supports multimetric packets
+# ABSTRACT: A StatsD client that supports multimetric packets
 
 use v5.20;
 
