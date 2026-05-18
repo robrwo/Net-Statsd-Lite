@@ -23,7 +23,6 @@ use namespace::autoclean;
 
 use experimental qw/ signatures /;
 
-# RECOMMEND PREREQ: Crypt::SysRandom::XS
 # RECOMMEND PREREQ: Ref::Util::XS
 # RECOMMEND PREREQ: Socket 2.026
 # RECOMMEND PREREQ: Type::Tiny::XS
@@ -195,7 +194,7 @@ has _socket => (
 =attr secure_set_key
 
 This is the key used by the L</secure_set_add> method.
-It is initialised with random bytes on construction.
+It must be initialized if that feature will be used.
 
 Note that if this is being used in a multi-process environment, then ensure that it is initialised before forking, or that the constructor specifies a secret key.
 If this is being used in a multi-host environment, then all hosts should use the same secret key.
@@ -204,11 +203,10 @@ Otherwise the statistics for the sets may be multiplied by the number of workers
 =cut
 
 has secure_set_key => (
-    is        => 'ro',
+    is        => 'lazy',
     isa       => Value,
     builder   => sub($self) {
-        require Crypt::SysRandom;
-        return Crypt::SysRandom::random_bytes(32);
+        croak "secure_set_key has not been set";
     },
 );
 
@@ -315,11 +313,12 @@ Use L</secure_set_add> for logging sensitive information.
 
   $stats->secure_set_add( $metric, $string, $opts );
 
-This is a variant of L</set_add> that hashes wthe value with the HMAC-SHA-256 algorithm before adding it.
-
-This allows logging of sensitive information such as session ids or email addresses.
+This is a variant of L</set_add> that hashes wthe value with the HMAC-SHA-256 algorithm before adding it,
+which allows logging of sensitive information such as session ids or email addresses.
 
 Note that if the L</secure_set_key> is inconsistent across processes or even hosts, then the statistics will be inaccurate.
+
+The hashing algoprithm may change in future versions.
 
 =cut
 

@@ -2,7 +2,10 @@ Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
   [Enhancements]
-  - Use Crypt::SysRandom and core Digest::SHA instead of CryptX.  This removes the secure_set_hash option.
+  - Use core Digest::SHA instead of CryptX.  This removes the secure_set_hash option.
+
+  [Incompatabilities]
+  - The secure_set_key must be manually initialised.
 
   [Documentation]
   - Removed "lightweight" from the abstract, because this class is not as light as it used to be. GH#3
