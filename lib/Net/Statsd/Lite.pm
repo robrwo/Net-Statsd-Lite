@@ -7,9 +7,8 @@ use v5.20;
 use Moo 1.000000;
 
 use Carp qw/ croak /;
-use Crypt::PRNG qw/ random_bytes /;
-use Crypt::Mac::HMAC 0.089 qw/ hmac_b64u /;
 use Devel::StrictMode;
+use Digest::SHA qw/ hmac_sha256_base64 /;
 use IO::Socket 1.18 ();
 use MooX::TypeTiny;
 use Ref::Util qw/ is_plain_hashref /;
@@ -24,6 +23,7 @@ use namespace::autoclean;
 
 use experimental qw/ signatures /;
 
+# RECOMMEND PREREQ: Crypt::SysRandom::XS
 # RECOMMEND PREREQ: Ref::Util::XS
 # RECOMMEND PREREQ: Socket 2.026
 # RECOMMEND PREREQ: Type::Tiny::XS
@@ -206,21 +206,10 @@ Otherwise the statistics for the sets may be multiplied by the number of workers
 has secure_set_key => (
     is        => 'ro',
     isa       => Value,
-    builder   => sub($self) { return random_bytes(20) },
-);
-
-=attr secure_set_hash
-
-This is the digest algorithm used by the L</secure_set_add> method.  It defaults to "SHA1".
-
-See L<Crypt::Mac::HMAC> for a list of hash algorithms.
-
-=cut
-
-has secure_set_hash => (
-    is        => 'lazy',
-    isa       => NonEmptySimpleStr,
-    default   => 'SHA1',
+    builder   => sub($self) {
+        require Crypt::SysRandom;
+        return Crypt::SysRandom::random_bytes(32);
+    },
 );
 
 =method C<counter>
@@ -326,7 +315,7 @@ Use L</secure_set_add> for logging sensitive information.
 
   $stats->secure_set_add( $metric, $string, $opts );
 
-This is a variant of L</set_add> that encrypts the value before adding it.
+This is a variant of L</set_add> that hashes wthe value with the HMAC-SHA-256 algorithm before adding it.
 
 This allows logging of sensitive information such as session ids or email addresses.
 
@@ -414,7 +403,7 @@ sub decrement( $self, $metric, $opts = undef ) {
 }
 
 sub secure_set_add( $self, $metric, $value, $opts = undef ) {
-    $self->set_add( $metric, hmac_b64u( $self->secure_set_hash, $self->secure_set_key, $value ), $opts );
+    $self->set_add( $metric, hmac_sha256_base64( $value, $self->secure_set_key ), $opts );
 }
 
 =method record_metric

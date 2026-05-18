@@ -49,6 +49,8 @@ specified. But it otherwise does not enforce maximum/minimum values.
 
 Changes for version v0.10.2 (2026-05-18)
 
+- Enhancements
+    - Use Crypt::SysRandom and core Digest::SHA instead of CryptX.  This removes the secure\_set\_hash option.
 - Documentation
     - Removed "lightweight" from the abstract, because this class is not as light as it used to be. GH#3
     - Updated documentation.
@@ -60,9 +62,9 @@ See the `Changes` file for more details.
 This module lists the following modules as runtime dependencies:
 
 - [Carp](https://metacpan.org/pod/Carp)
-- [Crypt::Mac::HMAC](https://metacpan.org/pod/Crypt%3A%3AMac%3A%3AHMAC) version 0.089 or later
-- [Crypt::PRNG](https://metacpan.org/pod/Crypt%3A%3APRNG)
+- [Crypt::SysRandom](https://metacpan.org/pod/Crypt%3A%3ASysRandom)
 - [Devel::StrictMode](https://metacpan.org/pod/Devel%3A%3AStrictMode)
+- [Digest::SHA](https://metacpan.org/pod/Digest%3A%3ASHA)
 - [IO::Socket](https://metacpan.org/pod/IO%3A%3ASocket) version 1.18 or later
 - [Moo](https://metacpan.org/pod/Moo) version 1.000000 or later
 - [MooX::TypeTiny](https://metacpan.org/pod/MooX%3A%3ATypeTiny)
