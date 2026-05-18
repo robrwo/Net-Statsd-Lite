@@ -313,12 +313,12 @@ Use L</secure_set_add> for logging sensitive information.
 
   $stats->secure_set_add( $metric, $string, $opts );
 
-This is a variant of L</set_add> that hashes wthe value with the HMAC-SHA-256 algorithm before adding it,
+This is a variant of L</set_add> that hashes the value with the HMAC-SHA-256 algorithm before adding it,
 which allows logging of sensitive information such as session ids or email addresses.
 
 Note that if the L</secure_set_key> is inconsistent across processes or even hosts, then the statistics will be inaccurate.
 
-The hashing algoprithm may change in future versions.
+The hashing algorithm may change in future versions.
 
 =cut
 
