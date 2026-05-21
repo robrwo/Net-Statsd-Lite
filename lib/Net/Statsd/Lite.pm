@@ -177,9 +177,19 @@ has max_buffer_size => (
     default => 512,
 );
 
-has _socket => (
+=attr socket
+
+This is the socket. It can be specified in the constructor directly if you want to use an alternative type of socket.
+
+  my $stats = Net::Statsd::Lite->new( socket => $socket );
+
+Setting this will leave the L</host>, L</port> and L</proto> attributes ignored.
+
+=cut
+
+has socket => (
     is      => 'lazy',
-    isa     => InstanceOf ['IO::Socket::INET'],
+    isa     => InstanceOf ['IO::Socket'],
     builder => sub($self) {
         my $sock = IO::Socket::INET->new(
             PeerAddr => $self->host,
@@ -189,6 +199,7 @@ has _socket => (
         return $sock;
     },
     handles => { _send => 'send' },
+    init_arg => 'socket',
 );
 
 =attr secure_set_key
@@ -427,7 +438,7 @@ sub record_metric( $self, $suffix, $metric, $value, $ ) {
     my $data = $self->prefix . $metric . ':' . $value . $suffix . "\n";
 
     if ( $self->autoflush ) {
-        send( $self->_socket, $data, 0 );
+        $self->_send( $data, 0 );
         return;
     }
 
@@ -450,7 +461,7 @@ is any data in the buffer.
 sub flush($self) {
     my $index = refaddr $self;
     if ( $Buffers{$index} ne '' ) {
-        send( $self->_socket, $Buffers{$index}, 0 );
+        $self->_send( $Buffers{$index}, 0 );
         $Buffers{$index} = '';
     }
 }

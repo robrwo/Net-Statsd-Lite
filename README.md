@@ -47,15 +47,10 @@ specified. But it otherwise does not enforce maximum/minimum values.
 
 # RECENT CHANGES
 
-Changes for version v0.10.2 (2026-05-18)
+Changes for version v0.10.3 (2026-05-22)
 
 - Enhancements
-    - Use core Digest::SHA instead of CryptX.  This removes the secure\_set\_hash option.
-- Incompatabilities
-    - The secure\_set\_key must be manually initialised.
-- Documentation
-    - Removed "lightweight" from the abstract, because this class is not as light as it used to be. GH#3
-    - Updated documentation.
+    - Make the socket explicitly configurable in the constructor.
 
 See the `Changes` file for more details.
 
