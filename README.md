@@ -47,7 +47,7 @@ specified. But it otherwise does not enforce maximum/minimum values.
 
 # RECENT CHANGES
 
-Changes for version v0.10.3 (2026-05-22)
+Changes for version v0.11.0 (2026-05-22)
 
 - Enhancements
     - Make the socket explicitly configurable in the constructor.
