@@ -51,6 +51,7 @@ Changes for version v0.11.0 (2026-05-22)
 
 - Enhancements
     - Make the socket explicitly configurable in the constructor.
+    - Use IO::Socket::IP for the default socket.
 
 See the `Changes` file for more details.
 
@@ -61,7 +62,7 @@ This module lists the following modules as runtime dependencies:
 - [Carp](https://metacpan.org/pod/Carp)
 - [Devel::StrictMode](https://metacpan.org/pod/Devel%3A%3AStrictMode)
 - [Digest::SHA](https://metacpan.org/pod/Digest%3A%3ASHA) version 5.96 or later
-- [IO::Socket](https://metacpan.org/pod/IO%3A%3ASocket) version 1.18 or later
+- [IO::Socket::IP](https://metacpan.org/pod/IO%3A%3ASocket%3A%3AIP)
 - [Moo](https://metacpan.org/pod/Moo) version 1.000000 or later
 - [MooX::TypeTiny](https://metacpan.org/pod/MooX%3A%3ATypeTiny)
 - [Ref::Util](https://metacpan.org/pod/Ref%3A%3AUtil)

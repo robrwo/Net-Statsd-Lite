@@ -9,7 +9,7 @@ use Moo 1.000000;
 use Carp qw/ croak /;
 use Devel::StrictMode;
 use Digest::SHA 5.96 qw/ hmac_sha256_base64 /;
-use IO::Socket 1.18 ();
+use IO::Socket::IP;
 use MooX::TypeTiny;
 use Ref::Util qw/ is_plain_hashref /;
 use Scalar::Util qw/ refaddr /;
@@ -191,10 +191,11 @@ has socket => (
     is      => 'lazy',
     isa     => InstanceOf ['IO::Socket'],
     builder => sub($self) {
-        my $sock = IO::Socket::INET->new(
-            PeerAddr => $self->host,
-            PeerPort => $self->port,
-            Proto    => $self->proto,
+        my $sock = IO::Socket::IP->new(
+            PeerHost    => $self->host,
+            PeerService => $self->port,
+            Proto       => $self->proto,
+            Type        => SOCK_DGRAM,
         ) or croak "Failed to initialize socket: $!";
         return $sock;
     },
