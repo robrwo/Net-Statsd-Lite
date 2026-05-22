@@ -52,6 +52,7 @@ Changes for version v0.11.1 (2026-05-22)
 - Documentation
     - Fixed inconsistent POD markup.
     - Updated SECURITY CONSIDERATIONS about tagging extensions.
+    - Fixed a bug in an example.
 
 See the `Changes` file for more details.
 

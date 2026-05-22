@@ -501,7 +501,7 @@ tagging can be added using something like
       my ( $next, $self, $suffix, $metric, $value, $opts ) = @_;
 
       if ( my $tags = $opts->{tags} ) {
-          $suffix .= "|#" . join ",", map { s/|//g; $_ } @$tags;
+          $suffix .= "|#" . join ",", map { $_ =~ s/\|//grx } @$tags;
       }
 
       $self->$next( $suffix, $metric, $value, $opts );
