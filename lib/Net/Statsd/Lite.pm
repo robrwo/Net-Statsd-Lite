@@ -31,7 +31,7 @@ our $VERSION = 'v0.11.1';
 
 =begin :prelude
 
-=for stopwords CloudWatch DogStatsd UDP multimetric compatability StatsD statsd
+=for stopwords CloudWatch DogStatsd UDP multimetric compatability StatsD statsd proto
 
 =end :prelude
 
@@ -91,7 +91,7 @@ integers no larger than 64-bits, but ideally 53-bits.
 The current implementation expects values to be integers, except where
 specified. But it otherwise does not enforce maximum/minimum values.
 
-=attr C<host>
+=attr host
 
 The host of the statsd daemon. It defaults to C<127.0.0.1>.
 
@@ -103,7 +103,7 @@ has host => (
     default => '127.0.0.1',
 );
 
-=attr C<port>
+=attr port
 
 The port that the statsd daemon is listening on. It defaults to
 C<8125>.
@@ -116,7 +116,7 @@ has port => (
     default => 8125,
 );
 
-=attr C<proto>
+=attr proto
 
 The network protocol that the statsd daemon is using. It defaults to
 C<udp>.
@@ -129,7 +129,7 @@ has proto => (
     default => 'udp',
 );
 
-=attr C<prefix>
+=attr prefix
 
 The prefix to prepend to metric names. It defaults to a blank string.
 
@@ -141,7 +141,7 @@ has prefix => (
     default => '',
 );
 
-=attr C<autoflush>
+=attr autoflush
 
 A flag indicating whether metrics will be send immediately. It
 defaults to true.
@@ -165,7 +165,7 @@ has autoflush => (
 
 my %Buffers;
 
-=attr C<max_buffer_size>
+=attr max_buffer_size
 
 Specifies the maximum buffer size. It defaults to C<512>.
 
@@ -222,7 +222,7 @@ has secure_set_key => (
     },
 );
 
-=method C<counter>
+=method counter
 
   $stats->counter( $metric, $value, $opts );
 
@@ -235,12 +235,12 @@ scalar with the C<$rate>.
 If a C<$rate> is specified and less than 1, then a sampling rate will
 be added. C<$rate> must be between 0 and 1.
 
-=method C<update>
+=method update
 
 This is an alias for L</counter>, for compatability with
 L<Etsy::StatsD> or L<Net::Statsd::Client>.
 
-=method C<increment>
+=method increment
 
   $stats->increment( $metric, $opts );
 
@@ -248,7 +248,7 @@ This is an alias for
 
   $stats->counter( $metric, 1, $opts );
 
-=method C<decrement>
+=method decrement
 
   $stats->decrement( $metric, $opts );
 
@@ -256,7 +256,7 @@ This is an alias for
 
   $stats->counter( $metric, -1, $opts );
 
-=method C<meter>
+=method meter
 
   $stats->meter( $metric, $value, $opts );
 
@@ -265,7 +265,7 @@ is appropriate for counters that will never decrease (e.g. the number
 of requests processed.)  However, this metric type is not supported by
 many StatsD daemons.
 
-=method C<gauge>
+=method gauge
 
   $stats->gauge( $metric, $value, $opts );
 
@@ -277,7 +277,7 @@ is prefixed by a "+", then the gauge is incremented by that amount,
 and if the number is prefixed by a "-", then the gauge is decremented
 by that amount.
 
-=method C<timing>
+=method timing
 
   $stats->timing( $metric, $value, $opts );
 
@@ -296,12 +296,12 @@ If a C<$rate> is specified and less than 1, then a sampling rate will
 be added. C<$rate> must be between 0 and 1.  Note that sampling
 rates for timings may not be supported by all statsd servers.
 
-=method C<timing_ms>
+=method timing_ms
 
 This is an alias for L</timing>, for compatability with
 L<Net::Statsd::Client>.
 
-=method C<histogram>
+=method histogram
 
   $stats->histogram( $metric, $value, $opts );
 
@@ -312,7 +312,7 @@ specification recommends that integers be used.
 This metric type is not supported by many StatsD daemons. You can use
 L</timing> for the same effect.
 
-=method C<set_add>
+=method set_add
 
   $stats->set_add( $metric, $string, $opts );
 
@@ -321,7 +321,7 @@ unique things, e.g. IP addresses or user ids.
 
 Use L</secure_set_add> for logging sensitive information.
 
-=method C<secure_set_add>
+=method secure_set_add
 
   $stats->secure_set_add( $metric, $string, $opts );
 
@@ -452,7 +452,7 @@ sub record_metric( $self, $suffix, $metric, $value, $ ) {
 
 }
 
-=method C<flush>
+=method flush
 
 This sends the buffer to the L</host> and empties the buffer, if there
 is any data in the buffer.
