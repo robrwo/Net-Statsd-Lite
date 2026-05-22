@@ -51,6 +51,7 @@ Changes for version v0.11.1 (2026-05-22)
 
 - Documentation
     - Fixed inconsistent POD markup.
+    - Updated SECURITY CONSIDERATIONS about tagging extensions.
 
 See the `Changes` file for more details.
 
@@ -114,6 +115,8 @@ For more information, see [How to install CPAN modules](https://www.cpan.org/mod
 When using the ["set\_add"](#set_add) method, be wary of exposing sensitive information like IP addresses, usernames, email addresses or even session ids over insecure channels.  Use the ["secure\_set\_add"](#secure_set_add) method instead.
 
 When generating metric names based on untrusted sources (such as HTTP requests), ensure that the metrics contain only printable characters and do not contain colons (":") or pipes ("|"), since these are used by the statsd protocol.
+
+When using [tagging extensions](#tagging-extensions), tags should also be validated to ensure that they do not contain control characters.
 
 # SUPPORT
 

@@ -513,6 +513,8 @@ When using the L</set_add> method, be wary of exposing sensitive information lik
 
 When generating metric names based on untrusted sources (such as HTTP requests), ensure that the metrics contain only printable characters and do not contain colons (":") or pipes ("|"), since these are used by the statsd protocol.
 
+When using L<tagging extensions|/TAGGING EXTENSIONS>, tags should also be validated to ensure that they do not contain control characters.
+
 =head1 SEE ALSO
 
 This module was forked from L<Net::Statsd::Tiny>.
