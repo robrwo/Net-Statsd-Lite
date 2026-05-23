@@ -47,7 +47,7 @@ specified. But it otherwise does not enforce maximum/minimum values.
 
 # RECENT CHANGES
 
-Changes for version v0.11.1 (2026-05-22)
+Changes for version v0.11.1 (2026-05-23)
 
 - Documentation
     - Fixed inconsistent POD markup.
