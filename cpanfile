@@ -58,6 +58,7 @@ on 'configure' => sub {
 };
 
 on 'develop' => sub {
+  requires "Dist::AutomationPolicy" => "v0.2.0";
   requires "Dist::Zilla::Plugin::UsefulReadme" => "v0.4.3";
   requires "File::Spec" => "0";
   requires "IO::Handle" => "0";
