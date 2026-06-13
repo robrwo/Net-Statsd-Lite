@@ -21,8 +21,8 @@ recommends "Socket" => "2.026";
 recommends "Type::Tiny::XS" => "0";
 
 on 'build' => sub {
-  requires "ExtUtils::MakeMaker" => "7.22";
-  requires "Module::Metadata" => "1.000015";
+  recommends "ExtUtils::MakeMaker" => "7.22";
+  recommends "Module::Metadata" => "1.000015";
 };
 
 on 'test' => sub {
@@ -32,7 +32,7 @@ on 'test' => sub {
   requires "IO::Socket" => "0";
   requires "IPC::Open3" => "0";
   requires "Module::Load" => "0";
-  requires "Module::Metadata" => "1.000015";
+  requires "Module::Metadata" => "0";
   requires "Net::EmptyPort" => "0";
   requires "Socket" => "0";
   requires "Test::Deep" => "0";
