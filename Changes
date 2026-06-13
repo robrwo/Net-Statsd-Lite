@@ -1,6 +1,8 @@
 Revision history for Net-Statsd-Lite
 
 {{$NEXT}}
+
+v0.11.2   2026-06-13 15:49:33+01:00 Europe/London
   [Toolchain]
   - Set the static install flag.
 
