@@ -8,6 +8,8 @@ Revision history for Net-Statsd-Lite
 
   - Included automation-policy.json.
 
+  - Sign distribution with SigStore.
+
 v0.11.1   2026-05-23 07:38:35+01:00 Europe/London
   [Documentation]
   - Fixed inconsistent POD markup.
